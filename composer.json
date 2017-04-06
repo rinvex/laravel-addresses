@@ -1,0 +1,76 @@
+{
+    "name": "rinvex/addressable",
+    "description": "Rinvex Addressable is a polymorphic Laravel package, for addressbook management. You can add addresses to any eloquent model with ease.",
+    "keywords": [
+        "model",
+        "rinvex",
+        "address",
+        "laravel",
+        "country",
+        "primary",
+        "billing",
+        "shipping",
+        "eloquent",
+        "addressable",
+        "polymorphic"
+    ],
+    "license": "MIT",
+    "homepage": "https://rinvex.com",
+    "support": {
+        "email": "help@rinvex.com",
+        "issues": "https://github.com/rinvex/addressable/issues",
+        "source": "https://github.com/rinvex/addressable",
+        "docs": "https://github.com/rinvex/addressable/blob/master/README.md"
+    },
+    "authors": [
+        {
+            "name": "Rinvex LLC",
+            "homepage": "https://rinvex.com",
+            "email": "help@rinvex.com"
+        },
+        {
+            "name": "Abdelrahman Omran",
+            "homepage": "https://omranic.com",
+            "email": "me@omranic.com",
+            "role": "Project Lead"
+        },
+        {
+            "name": "The Generous Laravel Community",
+            "homepage": "https://github.com/rinvex/addressable/contributors"
+        }
+    ],
+    "require": {
+        "php": "^7.0.0",
+        "jackpopp/geodistance": "^1.2",
+        "illuminate/support": "~5.4.0",
+        "illuminate/database": "~5.4.0",
+        "rinvex/cacheable": "dev-develop"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7.0",
+        "illuminate/container": "~5.4.0"
+    },
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "Rinvex\\Addressable\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rinvex\\Addressable\\Test\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
