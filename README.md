@@ -79,7 +79,6 @@ Address::create([
     'state' => 'Alexandria',
     'city' => 'Alexandria',
     'useral_code' => '21614',
-    'phone' => '01228160181',
     'lat' => '31.2467601',
     'lng' => '29.9020376',
     'is_primary' => true,

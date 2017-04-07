@@ -31,7 +31,6 @@ class Address extends Model
         'state',
         'city',
         'postal_code',
-        'phone',
         'lat',
         'lng',
         'is_primary',
