@@ -25,8 +25,8 @@ class Address extends Model
         'middle_name',
         'last_name',
         'name_suffix',
-        'country_code',
         'organization',
+        'country_code',
         'street',
         'state',
         'city',
@@ -87,7 +87,7 @@ class Address extends Model
     }
 
     /**
-     * Scope addresses by given country.
+     * Scope addresses by the given country.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string|null                           $countryCode

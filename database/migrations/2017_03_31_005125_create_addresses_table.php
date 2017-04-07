@@ -18,8 +18,8 @@ class CreateAddressesTable extends Migration
             $table->string('middle_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('name_suffix')->nullable();
-            $table->string('country_code', 2)->nullable();
             $table->string('organization')->nullable();
+            $table->string('country_code', 2)->nullable();
             $table->string('street')->nullable();
             $table->string('state')->nullable();
             $table->string('city')->nullable();
