@@ -14,7 +14,6 @@ return [
     |
     */
 
-
     'tables' => [
 
         'addresses' => 'addresses',

@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Rinvex\Addressable;
 
-use Rinvex\Cacheable\CacheableEloquent;
 use Illuminate\Database\Eloquent\Model;
+use Rinvex\Cacheable\CacheableEloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Jackpopp\GeoDistance\GeoDistanceTrait;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
