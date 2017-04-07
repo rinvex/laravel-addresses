@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Rinvex\Addressable;
 
@@ -84,7 +84,7 @@ trait Addressable
     public function addAddress(array $attributes)
     {
         $addressModel = static::getAddressClassName();
-        $addressInstance = (new $addressModel)->firstOrCreate($attributes);
+        $addressInstance = (new $addressModel())->firstOrCreate($attributes);
         $this->addresses()->syncWithoutDetaching($addressInstance);
     }
 
@@ -99,7 +99,7 @@ trait Addressable
     public function updateAddress($address, array $attributes)
     {
         $addressModel = static::getAddressClassName();
-        $addressInstance = $address instanceof Model ? $address : (new $addressModel)->findOrFail($address);
+        $addressInstance = $address instanceof Model ? $address : (new $addressModel())->findOrFail($address);
         $addressInstance->update($attributes);
         $this->addresses()->syncWithoutDetaching($addressInstance);
     }
