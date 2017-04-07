@@ -25,7 +25,7 @@ class Address extends Model
         'middle_name',
         'last_name',
         'name_suffix',
-        'country',
+        'country_code',
         'organization',
         'street',
         'state',
@@ -91,13 +91,13 @@ class Address extends Model
      * Scope addresses by given country.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string|null                           $country
+     * @param string|null                           $countryCode
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeInCountry(Builder $query, string $country = null): Builder
+    public function scopeInCountry(Builder $query, string $countryCode = null): Builder
     {
-        return $country ? $query->where('country', $country) : $query;
+        return $countryCode ? $query->where('country_code', $countryCode) : $query;
     }
 
     /**
@@ -111,7 +111,7 @@ class Address extends Model
             if (config('rinvex.addressable.geocoding')) {
                 $segments[] = $address->street;
                 $segments[] = sprintf('%s, %s %s', $address->city, $address->state, $address->postal_code);
-                $segments[] = country($address->country)->getName();
+                $segments[] = country($address->country_code)->getName();
 
                 $query = str_replace(' ', '+', implode(', ', $segments));
                 $geocode = json_decode(file_get_contents("https://maps.google.com/maps/api/geocode/json?address={$query}&sensor=false"));
