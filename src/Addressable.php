@@ -105,39 +105,39 @@ trait Addressable
     }
 
     /**
-     * Attach the given address to the addressable model.
+     * Attach the given address(s) to the addressable model.
      *
-     * @param mixed $address
+     * @param mixed $addresses
      *
      * @return void
      */
-    public function attachAddress($addresses)
+    public function attachAddresses($addresses)
     {
         $this->addresses()->syncWithoutDetaching($addresses);
     }
 
     /**
-     * Remove the given address from the addressable model.
+     * Remove the given address(s) from the addressable model.
      *
-     * @param mixed $address
+     * @param mixed $addresses
      *
      * @return void
      */
-    public function detachAddress($address)
+    public function detachAddresses($addresses = null)
     {
-        $this->addresses()->detach($address);
+        $this->addresses()->detach($addresses);
     }
 
     /**
-     * Remove the given address from the addressable model.
+     * Remove the given address(s) from the addressable model.
      *
-     * @param mixed $address
+     * @param mixed $addresses
      *
      * @return void
      */
-    public function removeAddress($address)
+    public function removeAddresses($addresses = null)
     {
-        $this->detachAddress($address);
+        $this->detachAddress($addresses);
     }
 
     /**

@@ -135,16 +135,19 @@ $user->updateAddress($address, [
 ]);
 
 // Attach an existing address
-$user->attachAddress($address);
+$user->attachAddresses($addresses);
 
 // Attach multiple existing addresses
-$user->attachAddress([1, 2, 3]);
+$user->attachAddresses([1, 2, 3]);
 
 // Detach an existing address
-$user->detachAddress($address);
+$user->detachAddresses($address);
 
-// Attach multiple existing addresses
-$user->detachAddress([1, 2, 3]);
+// Detach multiple existing addresses
+$user->detachAddresses([1, 2, 3]);
+
+// Detach all existing addresses
+$user->detachAddresses();
 
 // Alternative method for detaching addresses
 $user->removeAddress($address);
