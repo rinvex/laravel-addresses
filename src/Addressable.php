@@ -70,7 +70,7 @@ trait Addressable
     public static function bootAddressable()
     {
         static::deleted(function (Model $addressableModel) {
-            $addressableModel->addresses()->delete();
+            $addressableModel->addresses()->detach();
         });
     }
 
