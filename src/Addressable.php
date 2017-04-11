@@ -63,7 +63,7 @@ trait Addressable
     }
 
     /**
-     * Boot Addressable trait.
+     * Boot the addressable trait for a model.
      *
      * @return void
      */
@@ -105,7 +105,7 @@ trait Addressable
     }
 
     /**
-     * Attach the given address(es) to the addressable model.
+     * Attach the given address to the addressable model.
      *
      * @param mixed $address
      *
