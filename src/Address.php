@@ -122,4 +122,16 @@ class Address extends Model
             }
         });
     }
+
+    /**
+     * Get the address' country.
+     *
+     * @param string $countryCode
+     *
+     * @return \Rinvex\Country\Country
+     */
+    public function getCountryAttribute(string $countryCode)
+    {
+        return country($countryCode);
+    }
 }
