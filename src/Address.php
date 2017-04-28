@@ -126,12 +126,10 @@ class Address extends Model
     /**
      * Get the address' country.
      *
-     * @param string $countryCode
-     *
      * @return \Rinvex\Country\Country
      */
-    public function getCountryAttribute(string $countryCode)
+    public function getCountryAttribute()
     {
-        return country($countryCode);
+        return country($this->country_code);
     }
 }
