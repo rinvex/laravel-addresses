@@ -11,7 +11,7 @@ use Jackpopp\GeoDistance\GeoDistanceTrait;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
- * Rinvex\Addressable\Address
+ * Rinvex\Addressable\Address.
  *
  * @property int                          $id
  * @property string                       $label
