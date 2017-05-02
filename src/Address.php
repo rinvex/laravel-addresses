@@ -10,6 +10,58 @@ use Illuminate\Database\Eloquent\Builder;
 use Jackpopp\GeoDistance\GeoDistanceTrait;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
+/**
+ * Rinvex\Addressable\Address
+ *
+ * @property int                          $id
+ * @property string                       $label
+ * @property string                       $name_prefix
+ * @property string                       $first_name
+ * @property string                       $middle_name
+ * @property string                       $last_name
+ * @property string                       $name_suffix
+ * @property string                       $organization
+ * @property string                       $country_code
+ * @property string                       $street
+ * @property string                       $state
+ * @property string                       $city
+ * @property string                       $postal_code
+ * @property float                        $lat
+ * @property float                        $lng
+ * @property bool                         $is_primary
+ * @property bool                         $is_billing
+ * @property bool                         $is_shipping
+ * @property \Carbon\Carbon               $created_at
+ * @property \Carbon\Carbon               $updated_at
+ * @property string                       $deleted_at
+ * @property-read \Rinvex\Country\Country $country
+ *
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address inCountry($countryCode = null)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address isBilling()
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address isPrimary()
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereCity($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereCountryCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereFirstName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereIsBilling($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereIsPrimary($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereIsShipping($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereLabel($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereLastName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereLat($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereLng($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereMiddleName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereNamePrefix($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereNameSuffix($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereOrganization($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address wherePostalCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereState($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereStreet($value)
+ * @method static \Illuminate\Database\Query\Builder|\Rinvex\Addressable\Address whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Address extends Model
 {
     use GeoDistanceTrait;
