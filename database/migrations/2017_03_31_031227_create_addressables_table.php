@@ -17,8 +17,8 @@ class CreateAddressablesTable extends Migration
     {
         Schema::create(config('rinvex.addressable.tables.addressables'), function (Blueprint $table) {
             // Columns
-            $table->unsignedInteger('address_id');
-            $table->unsignedInteger('addressable_id');
+            $table->integer('address_id')->unsigned();
+            $table->integer('addressable_id')->unsigned();
             $table->string('addressable_type');
             $table->timestamps();
 
