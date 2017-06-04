@@ -24,7 +24,7 @@ class CreateAddressablesTable extends Migration
 
             // Indexes
             $table->unique(['address_id', 'addressable_id', 'addressable_type'], 'addressables_ids_type_unique');
-            $table->foreign('address_id')->references('id')->on('addresses')
+            $table->foreign('address_id')->references('id')->on(config('rinvex.addressable.tables.addresses'))
                   ->onDelete('cascade')->onUpdate('cascade');
         });
     }
