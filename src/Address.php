@@ -154,7 +154,7 @@ class Address extends Model
     /**
      * {@inheritdoc}
      */
-    public static function boot(): void
+    protected static function boot()
     {
         parent::boot();
 
