@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rinvex\Addressable;
 
+use Watson\Validating\ValidatingTrait;
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -64,6 +65,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  */
 class Address extends Model
 {
+    use ValidatingTrait;
     use GeoDistanceTrait;
     use CacheableEloquent;
 
@@ -113,6 +115,60 @@ class Address extends Model
         'is_shipping' => 'boolean',
         'deleted_at' => 'datetime',
     ];
+
+    /**
+     * {@inheritdoc}
+     */
+    protected $observables = [
+        'validating',
+        'validated',
+    ];
+
+    /**
+     * The default rules that the model will validate against.
+     *
+     * @var array
+     */
+    protected $rules = [];
+
+    /**
+     * Whether the model should throw a
+     * ValidationException if it fails validation.
+     *
+     * @var bool
+     */
+    protected $throwValidationExceptions = true;
+
+    /**
+     * Create a new Eloquent model instance.
+     *
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->setTable(config('rinvex.addressable.tables.addresses'));
+        $this->setRules([
+            'label' => 'required|integer|exists:'.config('rinvex.addressable.tables.resources').',id',
+            'name_prefix' => 'nullable|string|max:150',
+            'first_name' => 'nullable|string|max:150',
+            'middle_name' => 'nullable|string|max:150',
+            'last_name' => 'nullable|string|max:150',
+            'name_suffix' => 'nullable|string|max:150',
+            'organization' => 'nullable|string|max:150',
+            'country_code' => 'nullable|alpha|size:2|country',
+            'street' => 'nullable|string|max:150',
+            'state' => 'nullable|string|max:150',
+            'city' => 'nullable|string|max:150',
+            'postal_code' => 'nullable|string|max:150',
+            'lat' => 'nullable|numeric',
+            'lng' => 'nullable|numeric',
+            'is_primary' => 'boolean',
+            'is_billing' => 'boolean',
+            'is_shipping' => 'boolean',
+        ]);
+    }
 
     /**
      * Get all attached models of the given class to the address.
