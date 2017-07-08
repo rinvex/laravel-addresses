@@ -91,6 +91,30 @@ class Address extends Model
     ];
 
     /**
+     * {@inheritdoc}
+     */
+    protected $casts = [
+        'label' => 'string',
+        'name_prefix' => 'string',
+        'first_name' => 'string',
+        'middle_name' => 'string',
+        'last_name' => 'string',
+        'name_suffix' => 'string',
+        'organization' => 'string',
+        'country_code' => 'string',
+        'street' => 'string',
+        'state' => 'string',
+        'city' => 'string',
+        'postal_code' => 'string',
+        'lat' => 'float',
+        'lng' => 'float',
+        'is_primary' => 'boolean',
+        'is_billing' => 'boolean',
+        'is_shipping' => 'boolean',
+        'deleted_at' => 'datetime',
+    ];
+
+    /**
      * Get all attached models of the given class to the address.
      *
      * @param string $class
