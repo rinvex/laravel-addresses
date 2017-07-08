@@ -185,50 +185,50 @@ class Address extends Model
     /**
      * Scope primary addresses.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Builder $builder
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeIsPrimary(Builder $query): Builder
+    public function scopeIsPrimary(Builder $builder): Builder
     {
-        return $query->where('is_primary', true);
+        return $builder->where('is_primary', true);
     }
 
     /**
      * Scope billing addresses.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Builder $builder
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeIsBilling(Builder $query): Builder
+    public function scopeIsBilling(Builder $builder): Builder
     {
-        return $query->where('is_billing', true);
+        return $builder->where('is_billing', true);
     }
 
     /**
      * Scope shipping addresses.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Builder $builder
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function createAddress(Builder $query): Builder
+    public function createAddress(Builder $builder): Builder
     {
-        return $query->where('is_shipping', true);
+        return $builder->where('is_shipping', true);
     }
 
     /**
      * Scope addresses by the given country.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Builder $builder
      * @param string|null                           $countryCode
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeInCountry(Builder $query, string $countryCode = null): Builder
+    public function scopeInCountry(Builder $builder, string $countryCode = null): Builder
     {
-        return $countryCode ? $query->where('country_code', $countryCode) : $query;
+        return $countryCode ? $builder->where('country_code', $countryCode) : $builder;
     }
 
     /**
