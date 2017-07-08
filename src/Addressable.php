@@ -100,7 +100,7 @@ trait Addressable
     {
         $addressModel = static::getAddressClassName();
         $addressInstance = $address instanceof Model ? $address : (new $addressModel())->findOrFail($address);
-        $addressInstance->update($attributes);
+        $addressInstance->fill($attributes)->save();
         $this->addresses()->syncWithoutDetaching($addressInstance);
     }
 
