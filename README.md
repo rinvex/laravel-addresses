@@ -29,13 +29,13 @@
     Rinvex\Addressable\AddressableServiceProvider::class,
     ```
 
-4. **Optionally** you can publish migration and config files by running the following commands:
+4. **Optionally** you can publish migrations and config files by running the following commands:
     ```shell
     // Publish migrations
-    php artisan vendor:publish --tag="migrations" --provider="Rinvex\Addressable\AddressableServiceProvider"
+    php artisan vendor:publish --tag="rinvex-addressable-migrations"
 
     // Publish config
-    php artisan vendor:publish --tag="config" --provider="Rinvex\Addressable\AddressableServiceProvider"
+    php artisan vendor:publish --tag="rinvex-addressable-config"
     ```
 
 5. Done!

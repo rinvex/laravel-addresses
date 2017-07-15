@@ -38,10 +38,7 @@ class AddressableServiceProvider extends ServiceProvider
      */
     protected function publishResources()
     {
-        // Publish config
-        $this->publishes([realpath(__DIR__.'/../config/config.php') => config_path('rinvex.addressable.php')], 'config');
-
-        // Publish migrations
-        $this->publishes([realpath(__DIR__.'/../database/migrations') => database_path('migrations')], 'migrations');
+        $this->publishes([realpath(__DIR__.'/../config/config.php') => config_path('rinvex.addressable.php')], 'rinvex-addressable-config');
+        $this->publishes([realpath(__DIR__.'/../database/migrations') => database_path('migrations')], 'rinvex-addressable-migrations');
     }
 }
