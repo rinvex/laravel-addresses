@@ -12,6 +12,8 @@ class CreateAddressesTable extends Migration
         Schema::create(config('rinvex.addressable.tables.addresses'), function (Blueprint $table) {
             // Columns
             $table->increments('id');
+            $table->integer('addressable_id')->unsigned();
+            $table->string('addressable_type');
             $table->string('label')->nullable();
             $table->string('name_prefix')->nullable();
             $table->string('first_name')->nullable();
@@ -31,6 +33,9 @@ class CreateAddressesTable extends Migration
             $table->boolean('is_shipping')->default(false);
             $table->timestamps();
             $table->softDeletes();
+
+            // Indexes
+            $table->unique(['addressable_id', 'addressable_type'], 'addressables_id_type_unique');
         });
     }
 

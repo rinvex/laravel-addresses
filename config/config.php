@@ -2,31 +2,21 @@
 
 declare(strict_types=1);
 
+use Rinvex\Addressable\Address;
+
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Addressable Database Tables
-    |--------------------------------------------------------------------------
-    |
-    | Specify database table names that should be used to
-    | store your data. You may use whatever you like.
-    |
-    */
-
+    // Addressable Database Tables
     'tables' => [
-
         'addresses' => 'addresses',
-        'addressables' => 'addressables',
-
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Addressable Geocoding Options
-    |--------------------------------------------------------------------------
-    */
+    // Addressable Models
+    'models' => [
+        'address' => Address::class,
+    ],
 
+    // Addressable Geocoding Options
     'geocoding' => false,
 
 ];

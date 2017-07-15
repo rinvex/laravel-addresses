@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Jackpopp\GeoDistance\GeoDistanceTrait;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * Rinvex\Addressable\Address.
@@ -73,6 +73,8 @@ class Address extends Model
      * {@inheritdoc}
      */
     protected $fillable = [
+        'addressable_id',
+        'addressable_type',
         'label',
         'name_prefix',
         'first_name',
@@ -96,6 +98,8 @@ class Address extends Model
      * {@inheritdoc}
      */
     protected $casts = [
+        'addressable_id' => 'integer',
+        'addressable_type' => 'string',
         'label' => 'string',
         'name_prefix' => 'string',
         'first_name' => 'string',
@@ -150,6 +154,8 @@ class Address extends Model
 
         $this->setTable(config('rinvex.addressable.tables.addresses'));
         $this->setRules([
+            'addressable_id' => 'required|integer',
+            'addressable_type' => 'nullable|string|max:150',
             'label' => 'required|integer|exists:'.config('rinvex.addressable.tables.resources').',id',
             'name_prefix' => 'nullable|string|max:150',
             'first_name' => 'nullable|string|max:150',
@@ -171,15 +177,13 @@ class Address extends Model
     }
 
     /**
-     * Get all attached models of the given class to the address.
+     * Get the owner model of the address.
      *
-     * @param string $class
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function entries(string $class): MorphToMany
+    public function addressable(): MorphTo
     {
-        return $this->morphedByMany($class, 'addressable', config('rinvex.addressable.tables.addressables'), 'address_id', 'addressable_id');
+        return $this->morphTo();
     }
 
     /**

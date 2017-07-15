@@ -6,19 +6,10 @@ namespace Rinvex\Addressable;
 
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait Addressable
 {
-    /**
-     * Register a created model event with the dispatcher.
-     *
-     * @param \Closure|string $callback
-     *
-     * @return void
-     */
-    abstract public static function created($callback);
-
     /**
      * Register a deleted model event with the dispatcher.
      *
@@ -29,37 +20,26 @@ trait Addressable
     abstract public static function deleted($callback);
 
     /**
-     * Define a polymorphic many-to-many relationship.
+     * Define a polymorphic one-to-many relationship.
      *
-     * @param string      $related
-     * @param string      $name
-     * @param string|null $table
-     * @param string|null $foreignKey
-     * @param string|null $otherKey
-     * @param bool        $inverse
+     * @param  string $related
+     * @param  string $name
+     * @param  string $type
+     * @param  string $id
+     * @param  string $localKey
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-    abstract public function morphToMany($related, $name, $table = null, $foreignKey = null, $otherKey = null, $inverse = false);
-
-    /**
-     * Get address class name.
-     *
-     * @return string
-     */
-    public static function getAddressClassName(): string
-    {
-        return Address::class;
-    }
+    abstract public function morphMany($related, $name, $type = null, $id = null, $localKey = null);
 
     /**
      * Get all attached addresses to the model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-    public function addresses(): MorphToMany
+    public function addresses(): MorphMany
     {
-        return $this->morphToMany(static::getAddressClassName(), 'addressable', config('rinvex.addressable.tables.addressables'), 'addressable_id', 'address_id')->withTimestamps();
+        return $this->morphMany(config('rinvex.addressable.models.address'), 'addressable');
     }
 
     /**
@@ -83,7 +63,7 @@ trait Addressable
      */
     public function addAddress(array $attributes)
     {
-        $addressModel = static::getAddressClassName();
+        $addressModel = config('rinvex.addressable.models.address');
         $addressInstance = (new $addressModel())->firstOrCreate($attributes);
         $this->addresses()->syncWithoutDetaching($addressInstance);
     }
@@ -91,17 +71,15 @@ trait Addressable
     /**
      * Update the given address and attach to the addressable model.
      *
-     * @param int|\Illuminate\Database\Eloquent\Model $address
-     * @param array                                   $attributes
+     * @param \Illuminate\Database\Eloquent\Model $address
+     * @param array                               $attributes
      *
      * @return void
      */
-    public function updateAddress($address, array $attributes)
+    public function updateAddress(Model $address, array $attributes)
     {
-        $addressModel = static::getAddressClassName();
-        $addressInstance = $address instanceof Model ? $address : (new $addressModel())->findOrFail($address);
-        $addressInstance->fill($attributes)->save();
-        $this->addresses()->syncWithoutDetaching($addressInstance);
+        $address->fill($attributes)->save();
+        $this->addresses()->syncWithoutDetaching($address);
     }
 
     /**
@@ -152,7 +130,8 @@ trait Addressable
      */
     public static function findByDistance($distance, $unit, $lat, $lng): Collection
     {
-        $records = Address::within($distance, $unit, $lat, $lng)->get();
+        $addressModel = config('rinvex.addressable.models.address');
+        $records = (new $addressModel)->within($distance, $unit, $lat, $lng)->get();
 
         $results = [];
         foreach ($records as $record) {
