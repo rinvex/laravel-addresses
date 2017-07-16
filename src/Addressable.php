@@ -22,11 +22,11 @@ trait Addressable
     /**
      * Define a polymorphic one-to-many relationship.
      *
-     * @param  string $related
-     * @param  string $name
-     * @param  string $type
-     * @param  string $id
-     * @param  string $localKey
+     * @param string $related
+     * @param string $name
+     * @param string $type
+     * @param string $id
+     * @param string $localKey
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
@@ -131,7 +131,7 @@ trait Addressable
     public static function findByDistance($distance, $unit, $lat, $lng): Collection
     {
         $addressModel = config('rinvex.addressable.models.address');
-        $records = (new $addressModel)->within($distance, $unit, $lat, $lng)->get();
+        $records = (new $addressModel())->within($distance, $unit, $lat, $lng)->get();
 
         $results = [];
         foreach ($records as $record) {
