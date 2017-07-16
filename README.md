@@ -47,7 +47,7 @@
 
 Simply create a new eloquent model, and use `Addressable` trait:
 ```php
-namespace App;
+namespace App\Models;
 
 use Rinvex\Addressable\Addressable;
 use Illuminate\Database\Eloquent\Model;
@@ -61,10 +61,10 @@ class User extends Model
 ### Manage Your Addresses
 
 ```php
-use Rinvex\Addressable\Address;
+$user = new \App\Models\User();
 
 // Create a new address
-Address::create([
+$user->addresses()->create([
     'label' => 'Default Address',
     'name_prefix' => 'Mr.',
     'first_name' => 'Abdelrahman',
@@ -84,25 +84,7 @@ Address::create([
     'is_shipping' => true,
 ]);
 
-// Find an existing address
-$address = Address::find(1);
-
-// Update an existing address
-$address->update([
-    'label' => 'Default Work Address',
-]);
-```
-
-### Alternative Method to Manage Your Addresses
-
-```php
-use App\User;
-use Rinvex\Addressable\Address;
-
-// Find an existing user
-$user = User::find(1);
-
-// Create a new address
+// Alternative way of contact create
 $user->createAddress([
     'label' => 'Default Address',
     'name_prefix' => 'Mr.',
@@ -116,7 +98,6 @@ $user->createAddress([
     'state' => 'Alexandria',
     'city' => 'Alexandria',
     'useral_code' => '21614',
-    'phone' => '01228160181',
     'lat' => '31.2467601',
     'lng' => '29.9020376',
     'is_primary' => true,
@@ -125,23 +106,28 @@ $user->createAddress([
 ]);
 
 // Find an existing address
-$address = Address::find(1);
+$address = \Rinvex\Addressable\Address::find(1);
 
 // Update an existing address
+$address->update([
+    'label' => 'Default Work Address',
+]);
+
+// Alternative way of address update
 $user->updateAddress($address, [
     'label' => 'Default Work Address',
 ]);
 
-// Attach an existing address
-$user->attachAddresses($addresses);
+// Attach existing address
+$user->attachAddresses($address);
 
-// Attach multiple existing addresses
+// Attach existing addresses
 $user->attachAddresses([1, 2, 3]);
 
-// Detach an existing address
+// Detach existing address
 $user->detachAddresses($address);
 
-// Detach multiple existing addresses
+// Detach existing addresses
 $user->detachAddresses([1, 2, 3]);
 
 // Detach all existing addresses
@@ -157,40 +143,32 @@ $user->removeAddress([1, 2, 3]);
 The API is intutive and very straightfarwad, so let's give it a quick look:
 ```php
 // Instantiate your model
-$user = new \App\User();
+$user = new \App\Models\User();
 
 // Get attached addresses collection
 $user->addresses;
 
 // Get attached addresses query builder
 $user->addresses();
-```
 
-### Advanced Usage
-
-```php
 // Scope Primary Addresses
-Address::isPrimary();
+$primaryAddresses = \Rinvex\Addressable\Address::isPrimary();
 
 // Scope Billing Addresses
-Address::isBilling();
+$billingAddresses = \Rinvex\Addressable\Address::isBilling();
 
 // Scope Shipping Addresses
-Address::isShipping();
+$shippingAddresses = \Rinvex\Addressable\Address::isShipping();
 
 // Scope Addresses in the given country
-Address::InCountry('eg');
-
-// Retrieve All Models Attached To The Address
-$address = Address::find(1);
-$address->entries(\App\User::class);
+$egyptianAddresses = \Rinvex\Addressable\Address::InCountry('eg');
 
 // Find all users within 5 kilometers radius from the lat/lng 31.2467601/29.9020376
-User::findByDistance(5, 'kilometers', '31.2467601', '29.9020376');
+$fiveKmAddresses = \App\Models\User::findByDistance(5, 'kilometers', '31.2467601', '29.9020376');
 
-// Alternative method to find users with certain radius
-$user = new User();
-$users = $location->lat('31.2467601')->lng('29.9020376')->within(5, 'kilometers')->get();
+// Alternative method to find users within certain radius
+$user = new \App\Models\User();
+$users = $user->lat('31.2467601')->lng('29.9020376')->within(5, 'kilometers')->get();
 ```
 
 
