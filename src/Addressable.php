@@ -33,6 +33,18 @@ trait Addressable
     abstract public function morphMany($related, $name, $type = null, $id = null, $localKey = null);
 
     /**
+     * Boot the addressable trait for the model.
+     *
+     * @return void
+     */
+    public static function bootAddressable()
+    {
+        static::deleted(function (Model $addressableModel) {
+            $addressableModel->addresses()->delete();
+        });
+    }
+
+    /**
      * Get all attached addresses to the model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
@@ -40,82 +52,6 @@ trait Addressable
     public function addresses(): MorphMany
     {
         return $this->morphMany(config('rinvex.addressable.models.address'), 'addressable');
-    }
-
-    /**
-     * Boot the addressable trait for a model.
-     *
-     * @return void
-     */
-    public static function bootAddressable()
-    {
-        static::deleted(function (Model $addressableModel) {
-            $addressableModel->addresses()->detach();
-        });
-    }
-
-    /**
-     * Create the given address and attach to the addressable model.
-     *
-     * @param array $attributes
-     *
-     * @return void
-     */
-    public function addAddress(array $attributes)
-    {
-        $addressModel = config('rinvex.addressable.models.address');
-        $addressInstance = (new $addressModel())->firstOrCreate($attributes);
-        $this->addresses()->syncWithoutDetaching($addressInstance);
-    }
-
-    /**
-     * Update the given address and attach to the addressable model.
-     *
-     * @param \Illuminate\Database\Eloquent\Model $address
-     * @param array                               $attributes
-     *
-     * @return void
-     */
-    public function updateAddress(Model $address, array $attributes)
-    {
-        $address->fill($attributes)->save();
-        $this->addresses()->syncWithoutDetaching($address);
-    }
-
-    /**
-     * Attach the given address(s) to the addressable model.
-     *
-     * @param mixed $addresses
-     *
-     * @return void
-     */
-    public function attachAddresses($addresses)
-    {
-        $this->addresses()->syncWithoutDetaching($addresses);
-    }
-
-    /**
-     * Remove the given address(s) from the addressable model.
-     *
-     * @param mixed $addresses
-     *
-     * @return void
-     */
-    public function detachAddresses($addresses = null)
-    {
-        $this->addresses()->detach($addresses);
-    }
-
-    /**
-     * Remove the given address(s) from the addressable model.
-     *
-     * @param mixed $addresses
-     *
-     * @return void
-     */
-    public function removeAddresses($addresses = null)
-    {
-        $this->detachAddress($addresses);
     }
 
     /**
