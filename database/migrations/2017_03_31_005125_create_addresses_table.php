@@ -33,9 +33,6 @@ class CreateAddressesTable extends Migration
             $table->boolean('is_shipping')->default(false);
             $table->timestamps();
             $table->softDeletes();
-
-            // Indexes
-            $table->unique(['addressable_id', 'addressable_type'], 'addressables_id_type_unique');
         });
     }
 
