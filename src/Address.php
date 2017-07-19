@@ -217,7 +217,7 @@ class Address extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function createAddress(Builder $builder): Builder
+    public function scopeIsShipping(Builder $builder): Builder
     {
         return $builder->where('is_shipping', true);
     }
