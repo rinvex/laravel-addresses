@@ -24,12 +24,7 @@
     php artisan migrate --path="vendor/rinvex/addressable/database/migrations"
     ```
 
-3. Add the following service provider to the `'providers'` array inside `app/config/app.php`:
-    ```php
-    Rinvex\Addressable\AddressableServiceProvider::class,
-    ```
-
-4. **Optionally** you can publish migrations and config files by running the following commands:
+3. **Optionally** you can publish migrations and config files by running the following commands:
     ```shell
     // Publish migrations
     php artisan vendor:publish --tag="rinvex-addressable-migrations"
@@ -38,14 +33,15 @@
     php artisan vendor:publish --tag="rinvex-addressable-config"
     ```
 
-5. Done!
+4. Done!
 
 
 ## Usage
 
 ### Create Your Model
 
-Simply create a new eloquent model, and use `Addressable` trait:
+Simply create a new eloquent model, and use `\Rinvex\Addressable\Addressable` trait:
+
 ```php
 namespace App\Models;
 
@@ -84,25 +80,11 @@ $user->addresses()->create([
     'is_shipping' => true,
 ]);
 
-// Alternative way of contact create
-$user->createAddress([
-    'label' => 'Default Address',
-    'name_prefix' => 'Mr.',
-    'first_name' => 'Abdelrahman',
-    'middle_name' => 'Hossam M. M.',
-    'last_name' => 'Omran',
-    'name_suffix' => null,
-    'organization' => 'Rinvex',
-    'country_code' => 'eg',
-    'street' => '56 john doe st.',
-    'state' => 'Alexandria',
-    'city' => 'Alexandria',
-    'useral_code' => '21614',
-    'lat' => '31.2467601',
-    'lng' => '29.9020376',
-    'is_primary' => true,
-    'is_billing' => true,
-    'is_shipping' => true,
+// Create multiple new addresses
+$user->addresses()->createMany([
+    [...],
+    [...],
+    [...],
 ]);
 
 // Find an existing address
@@ -113,34 +95,17 @@ $address->update([
     'label' => 'Default Work Address',
 ]);
 
-// Alternative way of address update
-$user->updateAddress($address, [
-    'label' => 'Default Work Address',
-]);
+// Delete address
+$address->delete();
 
-// Attach existing address
-$user->attachAddresses($address);
-
-// Attach existing addresses
-$user->attachAddresses([1, 2, 3]);
-
-// Detach existing address
-$user->detachAddresses($address);
-
-// Detach existing addresses
-$user->detachAddresses([1, 2, 3]);
-
-// Detach all existing addresses
-$user->detachAddresses();
-
-// Alternative method for detaching addresses
-$user->removeAddress($address);
-$user->removeAddress([1, 2, 3]);
+// Alternative way of address deletion
+$user->addresses()->where('id', 123)->first()->delete();
 ```
 
 ### Manage Your Addressable Model
 
 The API is intutive and very straightfarwad, so let's give it a quick look:
+
 ```php
 // Instantiate your model
 $user = new \App\Models\User();
@@ -152,19 +117,19 @@ $user->addresses;
 $user->addresses();
 
 // Scope Primary Addresses
-$primaryAddresses = \Rinvex\Addressable\Address::isPrimary();
+$primaryAddresses = \Rinvex\Addressable\Address::isPrimary()->get();
 
 // Scope Billing Addresses
-$billingAddresses = \Rinvex\Addressable\Address::isBilling();
+$billingAddresses = \Rinvex\Addressable\Address::isBilling()->get();
 
 // Scope Shipping Addresses
-$shippingAddresses = \Rinvex\Addressable\Address::isShipping();
+$shippingAddresses = \Rinvex\Addressable\Address::isShipping()->get();
 
 // Scope Addresses in the given country
-$egyptianAddresses = \Rinvex\Addressable\Address::InCountry('eg');
+$egyptianAddresses = \Rinvex\Addressable\Address::InCountry('eg')->get();
 
 // Find all users within 5 kilometers radius from the lat/lng 31.2467601/29.9020376
-$fiveKmAddresses = \App\Models\User::findByDistance(5, 'kilometers', '31.2467601', '29.9020376');
+$fiveKmAddresses = \App\Models\User::findByDistance(5, 'kilometers', '31.2467601', '29.9020376')->get();
 
 // Alternative method to find users within certain radius
 $user = new \App\Models\User();
