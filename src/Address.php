@@ -155,8 +155,8 @@ class Address extends Model
         $this->setTable(config('rinvex.addressable.tables.addresses'));
         $this->setRules([
             'addressable_id' => 'required|integer',
-            'addressable_type' => 'nullable|string|max:150',
-            'label' => 'required|integer|exists:'.config('rinvex.addressable.tables.resources').',id',
+            'addressable_type' => 'required|string|max:150',
+            'label' => 'nullable|string|max:150',
             'name_prefix' => 'nullable|string|max:150',
             'first_name' => 'nullable|string|max:150',
             'middle_name' => 'nullable|string|max:150',
