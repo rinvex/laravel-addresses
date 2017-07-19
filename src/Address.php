@@ -258,14 +258,4 @@ class Address extends Model
             }
         });
     }
-
-    /**
-     * Get the address' country.
-     *
-     * @return \Rinvex\Country\Country
-     */
-    public function getCountryAttribute()
-    {
-        return country($this->country_code);
-    }
 }
