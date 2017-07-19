@@ -226,13 +226,13 @@ class Address extends Model
      * Scope addresses by the given country.
      *
      * @param \Illuminate\Database\Eloquent\Builder $builder
-     * @param string|null                           $countryCode
+     * @param string                                $countryCode
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeInCountry(Builder $builder, string $countryCode = null): Builder
+    public function scopeInCountry(Builder $builder, string $countryCode): Builder
     {
-        return $countryCode ? $builder->where('country_code', $countryCode) : $builder;
+        return $builder->where('country_code', $countryCode);
     }
 
     /**
