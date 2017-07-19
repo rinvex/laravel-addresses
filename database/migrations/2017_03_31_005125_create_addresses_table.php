@@ -32,7 +32,6 @@ class CreateAddressesTable extends Migration
             $table->boolean('is_billing')->default(false);
             $table->boolean('is_shipping')->default(false);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
