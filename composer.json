@@ -2,8 +2,12 @@
     "name": "rinvex/addressable",
     "description": "Rinvex Addressable is a polymorphic Laravel package, for addressbook management. You can add addresses to any eloquent model with ease.",
     "keywords": [
+        "city",
+        "state",
         "model",
+        "postal",
         "rinvex",
+        "street",
         "address",
         "laravel",
         "country",
@@ -11,6 +15,8 @@
         "billing",
         "shipping",
         "eloquent",
+        "latitude",
+        "longitude",
         "addressable",
         "polymorphic"
     ],
