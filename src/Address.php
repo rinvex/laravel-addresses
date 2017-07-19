@@ -236,6 +236,19 @@ class Address extends Model
     }
 
     /**
+     * Scope addresses by the given language.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param string                                $languageCode
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeInLanguage(Builder $builder, string $languageCode): Builder
+    {
+        return $builder->where('language_code', $languageCode);
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected static function boot()
