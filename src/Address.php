@@ -170,9 +170,9 @@ class Address extends Model
             'postal_code' => 'nullable|string|max:150',
             'lat' => 'nullable|numeric',
             'lng' => 'nullable|numeric',
-            'is_primary' => 'boolean',
-            'is_billing' => 'boolean',
-            'is_shipping' => 'boolean',
+            'is_primary' => 'sometimes|required|boolean',
+            'is_billing' => 'sometimes|required|boolean',
+            'is_shipping' => 'sometimes|required|boolean',
         ]);
     }
 
