@@ -21,14 +21,11 @@
 
 2. Execute migrations via the following command:
     ```
-    php artisan migrate --path="vendor/rinvex/addressable/database/migrations"
+    php artisan rinvex:migrate:addressable
     ```
 
 3. **Optionally** you can publish migrations and config files by running the following commands:
     ```shell
-    // Publish migrations
-    php artisan vendor:publish --tag="rinvex-addressable-migrations"
-
     // Publish config
     php artisan vendor:publish --tag="rinvex-addressable-config"
     ```
