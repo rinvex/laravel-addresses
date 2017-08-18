@@ -24,7 +24,7 @@ class AddressableServiceProvider extends ServiceProvider
     public function register()
     {
         // Merge config
-        $this->mergeConfigFrom(realpath(__DIR__.'/../config/config.php'), 'rinvex.addressable');
+        $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'rinvex.addressable');
 
         // Register artisan commands
         foreach ($this->commands as $key => $value) {
