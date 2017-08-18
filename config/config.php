@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use Rinvex\Addressable\Address;
-
 return [
 
     // Addressable Database Tables
@@ -13,7 +11,7 @@ return [
 
     // Addressable Models
     'models' => [
-        'address' => Address::class,
+        'address' => \Rinvex\Addressable\Models\Address::class,
     ],
 
     // Addressable Geocoding Options

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Addressable;
+namespace Rinvex\Addressable\Models;
 
 use Watson\Validating\ValidatingTrait;
 use Illuminate\Database\Eloquent\Model;
