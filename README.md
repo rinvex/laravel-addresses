@@ -37,13 +37,13 @@
 
 ### Create Your Model
 
-Simply create a new eloquent model, and use `\Rinvex\Addressable\Addressable` trait:
+Simply create a new eloquent model, and use `\Rinvex\Addressable\Traits\Addressable` trait:
 
 ```php
 namespace App\Models;
 
-use Rinvex\Addressable\Addressable;
 use Illuminate\Database\Eloquent\Model;
+use Rinvex\Addressable\Traits\Addressable;
 
 class User extends Model
 {

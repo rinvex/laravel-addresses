@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Addressable;
+namespace Rinvex\Addressable\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Rinvex\Addressable\Console\Commands\MigrateCommand;

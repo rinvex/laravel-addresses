@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Addressable;
+namespace Rinvex\Addressable\Traits;
 
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;

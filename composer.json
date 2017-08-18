@@ -80,7 +80,7 @@
         },
         "laravel": {
             "providers": [
-                "Rinvex\\Addressable\\AddressableServiceProvider"
+                "Rinvex\\Addressable\\Providers\\AddressableServiceProvider"
             ]
         }
     },
