@@ -26,6 +26,11 @@ class AddressableServiceProvider extends ServiceProvider
         // Merge config
         $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'rinvex.addressable');
 
+        // Register eloquent models
+        $this->app->singleton('rinvex.addressable', function ($app) {
+            return new $app['config']['rinvex.addressable.models.address'];
+        });
+
         // Register artisan commands
         foreach ($this->commands as $key => $value) {
             $this->app->singleton($value, function ($app) use ($key) {
@@ -57,7 +62,7 @@ class AddressableServiceProvider extends ServiceProvider
      */
     protected function publishResources()
     {
-        $this->publishes([realpath(__DIR__.'/../config/config.php') => config_path('rinvex.addressable.php')], 'rinvex-addressable-config');
-        $this->publishes([realpath(__DIR__.'/../database/migrations') => database_path('migrations')], 'rinvex-addressable-migrations');
+        $this->publishes([realpath(__DIR__.'/../../config/config.php') => config_path('rinvex.addressable.php')], 'rinvex-addressable-config');
+        $this->publishes([realpath(__DIR__.'/../../database/migrations') => database_path('migrations')], 'rinvex-addressable-migrations');
     }
 }
