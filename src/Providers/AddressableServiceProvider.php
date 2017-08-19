@@ -27,7 +27,7 @@ class AddressableServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'rinvex.addressable');
 
         // Register eloquent models
-        $this->app->singleton('rinvex.addressable', function ($app) {
+        $this->app->singleton('rinvex.addressable.address', function ($app) {
             return new $app['config']['rinvex.addressable.models.address'];
         });
 

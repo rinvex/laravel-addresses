@@ -85,7 +85,7 @@ $user->addresses()->createMany([
 ]);
 
 // Find an existing address
-$address = \Rinvex\Addressable\Models\Address::find(1);
+$address = app('rinvex.addressable.address')->find(1);
 
 // Update an existing address
 $address->update([
@@ -114,16 +114,16 @@ $user->addresses;
 $user->addresses();
 
 // Scope Primary Addresses
-$primaryAddresses = \Rinvex\Addressable\Models\Address::isPrimary()->get();
+$primaryAddresses = app('rinvex.addressable.address')->isPrimary()->get();
 
 // Scope Billing Addresses
-$billingAddresses = \Rinvex\Addressable\Models\Address::isBilling()->get();
+$billingAddresses = app('rinvex.addressable.address')->isBilling()->get();
 
 // Scope Shipping Addresses
-$shippingAddresses = \Rinvex\Addressable\Models\Address::isShipping()->get();
+$shippingAddresses = app('rinvex.addressable.address')->isShipping()->get();
 
 // Scope Addresses in the given country
-$egyptianAddresses = \Rinvex\Addressable\Models\Address::InCountry('eg')->get();
+$egyptianAddresses = app('rinvex.addressable.address')->InCountry('eg')->get();
 
 // Find all users within 5 kilometers radius from the lat/lng 31.2467601/29.9020376
 $fiveKmAddresses = \App\Models\User::findByDistance(5, 'kilometers', '31.2467601', '29.9020376')->get();
