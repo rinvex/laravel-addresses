@@ -28,7 +28,7 @@ class AddressableServiceProvider extends ServiceProvider
 
         // Register eloquent models
         $this->app->singleton('rinvex.addressable.address', function ($app) {
-            return new $app['config']['rinvex.addressable.models.address'];
+            return new $app['config']['rinvex.addressable.models.address']();
         });
 
         // Register artisan commands
