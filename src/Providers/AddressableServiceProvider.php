@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rinvex\Addressable\Providers;
 
+use Rinvex\Addressable\Models\Address;
 use Illuminate\Support\ServiceProvider;
 use Rinvex\Addressable\Console\Commands\MigrateCommand;
 
@@ -26,10 +27,11 @@ class AddressableServiceProvider extends ServiceProvider
         // Merge config
         $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'rinvex.addressable');
 
-        // Register eloquent models
+        // Bind eloquent models to IoC container
         $this->app->singleton('rinvex.addressable.address', function ($app) {
             return new $app['config']['rinvex.addressable.models.address']();
         });
+        $this->app->alias('rinvex.addressable.address', Address::class);
 
         // Register artisan commands
         foreach ($this->commands as $key => $value) {
