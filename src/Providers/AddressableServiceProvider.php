@@ -33,14 +33,8 @@ class AddressableServiceProvider extends ServiceProvider
         });
         $this->app->alias('rinvex.addressable.address', Address::class);
 
-        // Register artisan commands
-        foreach ($this->commands as $key => $value) {
-            $this->app->singleton($value, function ($app) use ($key) {
-                return new $key();
-            });
-        }
-
-        $this->commands(array_values($this->commands));
+        // Register console commands
+        ! $this->app->runningInConsole() || $this->registerCommands();
     }
 
     /**
@@ -48,13 +42,11 @@ class AddressableServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->runningInConsole()) {
-            // Load migrations
-            $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+        // Load migrations
+        ! $this->app->runningInConsole() || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
-            // Publish Resources
-            $this->publishResources();
-        }
+        // Publish Resources
+        ! $this->app->runningInConsole() || $this->publishResources();
     }
 
     /**
@@ -66,5 +58,22 @@ class AddressableServiceProvider extends ServiceProvider
     {
         $this->publishes([realpath(__DIR__.'/../../config/config.php') => config_path('rinvex.addressable.php')], 'rinvex-addressable-config');
         $this->publishes([realpath(__DIR__.'/../../database/migrations') => database_path('migrations')], 'rinvex-addressable-migrations');
+    }
+
+    /**
+     * Register console commands.
+     *
+     * @return void
+     */
+    protected function registerCommands()
+    {
+        // Register artisan commands
+        foreach ($this->commands as $key => $value) {
+            $this->app->singleton($value, function ($app) use ($key) {
+                return new $key();
+            });
+        }
+
+        $this->commands(array_values($this->commands));
     }
 }
