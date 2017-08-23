@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Jackpopp\GeoDistance\GeoDistanceTrait;
+use Rinvex\Addressable\Contracts\AddressContract;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
@@ -69,7 +70,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address within($distance, $measurement = null, $lat = null, $lng = null)
  * @mixin \Eloquent
  */
-class Address extends Model
+class Address extends Model implements AddressContract
 {
     use ValidatingTrait;
     use GeoDistanceTrait;

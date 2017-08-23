@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Rinvex\Addressable\Providers;
 
-use Rinvex\Addressable\Models\Address;
 use Illuminate\Support\ServiceProvider;
+use Rinvex\Addressable\Contracts\AddressContract;
 use Rinvex\Addressable\Console\Commands\MigrateCommand;
 
 class AddressableServiceProvider extends ServiceProvider
@@ -31,7 +31,7 @@ class AddressableServiceProvider extends ServiceProvider
         $this->app->singleton('rinvex.addressable.address', function ($app) {
             return new $app['config']['rinvex.addressable.models.address']();
         });
-        $this->app->alias('rinvex.addressable.address', Address::class);
+        $this->app->alias('rinvex.addressable.address', AddressContract::class);
 
         // Register console commands
         ! $this->app->runningInConsole() || $this->registerCommands();
