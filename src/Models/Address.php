@@ -7,8 +7,8 @@ namespace Rinvex\Addressable\Models;
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
 use Illuminate\Database\Eloquent\Builder;
-use Rinvex\Support\Traits\ValidatingTrait;
 use Jackpopp\GeoDistance\GeoDistanceTrait;
+use Rinvex\Support\Traits\ValidatingTrait;
 use Rinvex\Addressable\Contracts\AddressContract;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
