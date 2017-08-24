@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Rinvex\Addressable\Models;
 
-use Watson\Validating\ValidatingTrait;
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Rinvex\Support\Traits\ValidatingTrait;
 use Jackpopp\GeoDistance\GeoDistanceTrait;
 use Rinvex\Addressable\Contracts\AddressContract;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
