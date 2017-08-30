@@ -24,13 +24,7 @@
     php artisan rinvex:migrate:addressable
     ```
 
-3. **Optionally** you can publish migrations and config files by running the following commands:
-    ```shell
-    // Publish config
-    php artisan vendor:publish --tag="rinvex-addressable-config"
-    ```
-
-4. Done!
+3. Done!
 
 
 ## Usage
