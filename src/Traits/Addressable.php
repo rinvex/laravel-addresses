@@ -39,8 +39,8 @@ trait Addressable
      */
     public static function bootAddressable()
     {
-        static::deleted(function (Model $addressableModel) {
-            $addressableModel->addresses()->delete();
+        static::deleted(function (self $model) {
+            $model->addresses()->delete();
         });
     }
 
