@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Addressable\Models;
+namespace Rinvex\Addresses\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Jackpopp\GeoDistance\GeoDistanceTrait;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Addressable\Contracts\AddressContract;
+use Rinvex\Addresses\Contracts\AddressContract;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
- * Rinvex\Addressable\Models\Address.
+ * Rinvex\Addresses\Models\Address.
  *
  * @property int                                                $id
  * @property int                                                $addressable_id
@@ -39,35 +39,35 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property \Carbon\Carbon                                     $updated_at
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $addressable
  *
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address inCountry($countryCode)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address inLanguage($languageCode)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address isBilling()
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address isPrimary()
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address isShipping()
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address outside($distance, $measurement = null, $lat = null, $lng = null)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereAddressableId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereAddressableType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereCity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereCountryCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereFirstName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereIsBilling($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereIsPrimary($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereIsShipping($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereLabel($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereLastName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereLat($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereLng($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereMiddleName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereNamePrefix($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereNameSuffix($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereOrganization($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address wherePostalCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereState($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereStreet($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addressable\Models\Address within($distance, $measurement = null, $lat = null, $lng = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address inCountry($countryCode)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address inLanguage($languageCode)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address isBilling()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address isPrimary()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address isShipping()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address outside($distance, $measurement = null, $lat = null, $lng = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereAddressableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereAddressableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereCountryCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsBilling($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsPrimary($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsShipping($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLabel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLat($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLng($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereMiddleName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereNamePrefix($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereNameSuffix($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereOrganization($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address wherePostalCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereStreet($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address within($distance, $measurement = null, $lat = null, $lng = null)
  * @mixin \Eloquent
  */
 class Address extends Model implements AddressContract
@@ -159,7 +159,7 @@ class Address extends Model implements AddressContract
     {
         parent::__construct($attributes);
 
-        $this->setTable(config('rinvex.addressable.tables.addresses'));
+        $this->setTable(config('rinvex.addresses.tables.addresses'));
         $this->setRules([
             'addressable_id' => 'required|integer',
             'addressable_type' => 'required|string|max:150',
@@ -263,7 +263,7 @@ class Address extends Model implements AddressContract
         parent::boot();
 
         static::saving(function (self $address) {
-            if (config('rinvex.addressable.geocoding')) {
+            if (config('rinvex.addresses.geocoding')) {
                 $segments[] = $address->street;
                 $segments[] = sprintf('%s, %s %s', $address->city, $address->state, $address->postal_code);
                 $segments[] = country($address->country_code)->getName();

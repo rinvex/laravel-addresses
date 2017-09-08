@@ -1,6 +1,6 @@
 {
-    "name": "rinvex/addressable",
-    "description": "Rinvex Addressable is a polymorphic Laravel package, for addressbook management. You can add addresses to any eloquent model with ease.",
+    "name": "rinvex/addresses",
+    "description": "Rinvex Addresses is a polymorphic Laravel package, for addressbook management. You can add addresses to any eloquent model with ease.",
     "keywords": [
         "city",
         "state",
@@ -24,9 +24,9 @@
     "homepage": "https://rinvex.com",
     "support": {
         "email": "help@rinvex.com",
-        "issues": "https://github.com/rinvex/addressable/issues",
-        "source": "https://github.com/rinvex/addressable",
-        "docs": "https://github.com/rinvex/addressable/blob/master/README.md"
+        "issues": "https://github.com/rinvex/addresses/issues",
+        "source": "https://github.com/rinvex/addresses",
+        "docs": "https://github.com/rinvex/addresses/blob/master/README.md"
     },
     "authors": [
         {
@@ -42,7 +42,7 @@
         },
         {
             "name": "The Generous Laravel Community",
-            "homepage": "https://github.com/rinvex/addressable/contributors"
+            "homepage": "https://github.com/rinvex/addresses/contributors"
         }
     ],
     "require": {
@@ -61,12 +61,12 @@
             "database"
         ],
         "psr-4": {
-            "Rinvex\\Addressable\\": "src/"
+            "Rinvex\\Addresses\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Rinvex\\Addressable\\Test\\": "tests"
+            "Rinvex\\Addresses\\Test\\": "tests"
         }
     },
     "config": {
@@ -80,7 +80,7 @@
         },
         "laravel": {
             "providers": [
-                "Rinvex\\Addressable\\Providers\\AddressableServiceProvider"
+                "Rinvex\\Addresses\\Providers\\AddressesServiceProvider"
             ]
         }
     },

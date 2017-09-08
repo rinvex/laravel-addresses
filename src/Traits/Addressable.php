@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Addressable\Traits;
+namespace Rinvex\Addresses\Traits;
 
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -51,7 +51,7 @@ trait Addressable
      */
     public function addresses(): MorphMany
     {
-        return $this->morphMany(config('rinvex.addressable.models.address'), 'addressable');
+        return $this->morphMany(config('rinvex.addresses.models.address'), 'addressable');
     }
 
     /**
@@ -66,7 +66,7 @@ trait Addressable
      */
     public static function findByDistance($distance, $unit, $lat, $lng): Collection
     {
-        $addressModel = config('rinvex.addressable.models.address');
+        $addressModel = config('rinvex.addresses.models.address');
         $records = (new $addressModel())->within($distance, $unit, $lat, $lng)->get();
 
         $results = [];

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Addressable\Console\Commands;
+namespace Rinvex\Addresses\Console\Commands;
 
 use Illuminate\Console\Command;
 
@@ -13,14 +13,14 @@ class MigrateCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'rinvex:migrate:addressable';
+    protected $signature = 'rinvex:migrate:addresses';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Migrate Rinvex Addressable Tables.';
+    protected $description = 'Migrate Rinvex Addresses Tables.';
 
     /**
      * Execute the console command.
@@ -29,7 +29,7 @@ class MigrateCommand extends Command
      */
     public function handle()
     {
-        $this->warn('Migrate rinvex/addressable:');
-        $this->call('migrate', ['--step' => true, '--path' => 'vendor/rinvex/addressable/database/migrations']);
+        $this->warn('Migrate rinvex/addresses:');
+        $this->call('migrate', ['--step' => true, '--path' => 'vendor/rinvex/addresses/database/migrations']);
     }
 }

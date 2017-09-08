@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 return [
 
-    // Addressable Database Tables
+    // Addresses Database Tables
     'tables' => [
         'addresses' => 'addresses',
     ],
 
-    // Addressable Models
+    // Addresses Models
     'models' => [
-        'address' => \Rinvex\Addressable\Models\Address::class,
+        'address' => \Rinvex\Addresses\Models\Address::class,
     ],
 
-    // Addressable Geocoding Options
+    // Addresses Geocoding Options
     'geocoding' => false,
 
 ];

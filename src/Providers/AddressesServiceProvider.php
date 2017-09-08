@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Addressable\Providers;
+namespace Rinvex\Addresses\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Rinvex\Addressable\Contracts\AddressContract;
-use Rinvex\Addressable\Console\Commands\MigrateCommand;
+use Rinvex\Addresses\Contracts\AddressContract;
+use Rinvex\Addresses\Console\Commands\MigrateCommand;
 
-class AddressableServiceProvider extends ServiceProvider
+class AddressesServiceProvider extends ServiceProvider
 {
     /**
      * The commands to be registered.
@@ -16,7 +16,7 @@ class AddressableServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
-        MigrateCommand::class => 'command.rinvex.addressable.migrate',
+        MigrateCommand::class => 'command.rinvex.addresses.migrate',
     ];
 
     /**
@@ -25,13 +25,13 @@ class AddressableServiceProvider extends ServiceProvider
     public function register()
     {
         // Merge config
-        $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'rinvex.addressable');
+        $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'rinvex.addresses');
 
         // Bind eloquent models to IoC container
-        $this->app->singleton('rinvex.addressable.address', function ($app) {
-            return new $app['config']['rinvex.addressable.models.address']();
+        $this->app->singleton('rinvex.addresses.address', function ($app) {
+            return new $app['config']['rinvex.addresses.models.address']();
         });
-        $this->app->alias('rinvex.addressable.address', AddressContract::class);
+        $this->app->alias('rinvex.addresses.address', AddressContract::class);
 
         // Register console commands
         ! $this->app->runningInConsole() || $this->registerCommands();
@@ -56,8 +56,8 @@ class AddressableServiceProvider extends ServiceProvider
      */
     protected function publishResources()
     {
-        $this->publishes([realpath(__DIR__.'/../../config/config.php') => config_path('rinvex.addressable.php')], 'rinvex-addressable-config');
-        $this->publishes([realpath(__DIR__.'/../../database/migrations') => database_path('migrations')], 'rinvex-addressable-migrations');
+        $this->publishes([realpath(__DIR__.'/../../config/config.php') => config_path('rinvex.addresses.php')], 'rinvex-addresses-config');
+        $this->publishes([realpath(__DIR__.'/../../database/migrations') => database_path('migrations')], 'rinvex-addresses-migrations');
     }
 
     /**
