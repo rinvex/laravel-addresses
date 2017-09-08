@@ -4,30 +4,17 @@ declare(strict_types=1);
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Addressable Database Tables
-    |--------------------------------------------------------------------------
-    |
-    | Specify database table names that should be used to
-    | store your data. You may use whatever you like.
-    |
-    */
-
-
+    // Addresses Database Tables
     'tables' => [
-
         'addresses' => 'addresses',
-        'addressables' => 'addressables',
-
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Addressable Geocoding Options
-    |--------------------------------------------------------------------------
-    */
+    // Addresses Models
+    'models' => [
+        'address' => \Rinvex\Addresses\Models\Address::class,
+    ],
 
+    // Addresses Geocoding Options
     'geocoding' => false,
 
 ];

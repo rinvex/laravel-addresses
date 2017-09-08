@@ -1,58 +1,43 @@
-# Rinvex Addressable
+# Rinvex Addresses
 
-**Rinvex Addressable** is a polymorphic Laravel package, for addressbook management. You can add addresses to any eloquent model with ease.
+**Rinvex Addresses** is a polymorphic Laravel package, for addressbook management. You can add addresses to any eloquent model with ease.
 
-[![Packagist](https://img.shields.io/packagist/v/rinvex/addressable.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/rinvex/addressable)
-[![VersionEye Dependencies](https://img.shields.io/versioneye/d/php/rinvex:addressable.svg?label=Dependencies&style=flat-square)](https://www.versioneye.com/php/rinvex:addressable/)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/addressable.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/addressable/)
-[![Code Climate](https://img.shields.io/codeclimate/github/rinvex/addressable.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/addressable)
-[![Travis](https://img.shields.io/travis/rinvex/addressable.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/addressable)
+[![Packagist](https://img.shields.io/packagist/v/rinvex/addresses.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/rinvex/addresses)
+[![VersionEye Dependencies](https://img.shields.io/versioneye/d/php/rinvex:addresses.svg?label=Dependencies&style=flat-square)](https://www.versioneye.com/php/rinvex:addresses/)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/addresses.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/addresses/)
+[![Code Climate](https://img.shields.io/codeclimate/github/rinvex/addresses.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/addresses)
+[![Travis](https://img.shields.io/travis/rinvex/addresses.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/addresses)
 [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/8a185d9d-f23a-4782-b71c-aa35ee74d385.svg?label=SensioLabs&style=flat-square)](https://insight.sensiolabs.com/projects/8a185d9d-f23a-4782-b71c-aa35ee74d385)
 [![StyleCI](https://styleci.io/repos/87485079/shield)](https://styleci.io/repos/87485079)
-[![License](https://img.shields.io/packagist/l/rinvex/addressable.svg?label=License&style=flat-square)](https://github.com/rinvex/addressable/blob/develop/LICENSE)
+[![License](https://img.shields.io/packagist/l/rinvex/addresses.svg?label=License&style=flat-square)](https://github.com/rinvex/addresses/blob/develop/LICENSE)
 
 
 ## Installation
 
 1. Install the package via composer:
     ```shell
-    composer require rinvex/addressable
+    composer require rinvex/addresses
     ```
 
 2. Execute migrations via the following command:
     ```
-    php artisan migrate --path="vendor/rinvex/addressable/database/migrations"
+    php artisan rinvex:migrate:addresses
     ```
 
-3. Add the following service provider to the `'providers'` array inside `app/config/app.php`:
-    ```php
-    Rinvex\Addressable\AddressableServiceProvider::class
-    ```
-
-4. **Optionally** you can publish migration and config files by running the following commands:
-    ```shell
-    // Publish migrations
-    php artisan vendor:publish --tag="migrations" --provider="Rinvex\Addressable\AddressableServiceProvider"
-
-    // Publish config
-    php artisan vendor:publish --tag="config" --provider="Rinvex\Addressable\AddressableServiceProvider"
-    ```
-
-5. Done!
+3. Done!
 
 
 ## Usage
 
 ### Create Your Model
 
-Simply create a new eloquent model, and use `Addressable` trait:
-``` php
-<?php
+Simply create a new eloquent model, and use `\Rinvex\Addresses\Traits\Addressable` trait:
 
-namespace App;
+```php
+namespace App\Models;
 
-use Rinvex\Addressable\Addressable;
 use Illuminate\Database\Eloquent\Model;
+use Rinvex\Addresses\Traits\Addressable;
 
 class User extends Model
 {
@@ -63,23 +48,22 @@ class User extends Model
 ### Manage Your Addresses
 
 ```php
-use Rinvex\Addressable\Address;
+$user = new \App\Models\User();
 
 // Create a new address
-Address::create([
+$user->addresses()->create([
     'label' => 'Default Address',
     'name_prefix' => 'Mr.',
     'first_name' => 'Abdelrahman',
     'middle_name' => 'Hossam M. M.',
     'last_name' => 'Omran',
     'name_suffix' => null,
-    'country' => 'eg',
     'organization' => 'Rinvex',
+    'country_code' => 'eg',
     'street' => '56 john doe st.',
     'state' => 'Alexandria',
     'city' => 'Alexandria',
     'useral_code' => '21614',
-    'phone' => '01228160181',
     'lat' => '31.2467601',
     'lng' => '29.9020376',
     'is_primary' => true,
@@ -87,110 +71,60 @@ Address::create([
     'is_shipping' => true,
 ]);
 
+// Create multiple new addresses
+$user->addresses()->createMany([
+    [...],
+    [...],
+    [...],
+]);
+
 // Find an existing address
-$address = Address::find(1);
+$address = app('rinvex.addresses.address')->find(1);
 
 // Update an existing address
 $address->update([
     'label' => 'Default Work Address',
 ]);
-```
 
-### Alternative Method to Manage Your Addresses
+// Delete address
+$address->delete();
 
-```php
-use App\User;
-use Rinvex\Addressable\Address;
-
-// Find an existing user
-$user = User::find(1);
-
-// Create a new address
-$user->createAddress([
-    'label' => 'Default Address',
-    'name_prefix' => 'Mr.',
-    'first_name' => 'Abdelrahman',
-    'middle_name' => 'Hossam M. M.',
-    'last_name' => 'Omran',
-    'name_suffix' => null,
-    'country' => 'eg',
-    'organization' => 'Rinvex',
-    'street' => '56 john doe st.',
-    'state' => 'Alexandria',
-    'city' => 'Alexandria',
-    'useral_code' => '21614',
-    'phone' => '01228160181',
-    'lat' => '31.2467601',
-    'lng' => '29.9020376',
-    'is_primary' => true,
-    'is_billing' => true,
-    'is_shipping' => true,
-]);
-
-// Find an existing address
-$address = Address::find(1);
-
-// Update an existing address
-$user->updateAddress($address, [
-    'label' => 'Default Work Address',
-]);
-
-// Attach an existing address
-$user->attachAddress($address);
-
-// Attach multiple existing addresses
-$user->attachAddress([1, 2, 3]);
-
-// Detach an existing address
-$user->detachAddress($address);
-
-// Attach multiple existing addresses
-$user->detachAddress([1, 2, 3]);
-
-// Alternative method for detaching addresses
-$user->removeAddress($address);
-$user->removeAddress([1, 2, 3]);
+// Alternative way of address deletion
+$user->addresses()->where('id', 123)->first()->delete();
 ```
 
 ### Manage Your Addressable Model
 
 The API is intutive and very straightfarwad, so let's give it a quick look:
+
 ```php
 // Instantiate your model
-$user = new \App\User();
+$user = new \App\Models\User();
 
 // Get attached addresses collection
 $user->addresses;
 
 // Get attached addresses query builder
 $user->addresses();
-```
 
-### Advanced Usage
-
-```php
 // Scope Primary Addresses
-Address::isPrimary();
+$primaryAddresses = app('rinvex.addresses.address')->isPrimary()->get();
 
 // Scope Billing Addresses
-Address::isBilling();
+$billingAddresses = app('rinvex.addresses.address')->isBilling()->get();
 
 // Scope Shipping Addresses
-Address::isShipping();
+$shippingAddresses = app('rinvex.addresses.address')->isShipping()->get();
 
 // Scope Addresses in the given country
-Address::InCountry('eg');
-
-// Retrieve All Models Attached To The Address
-$address = Address::find(1);
-$address->entries(\App\User::class);
+$egyptianAddresses = app('rinvex.addresses.address')->InCountry('eg')->get();
 
 // Find all users within 5 kilometers radius from the lat/lng 31.2467601/29.9020376
-User::findByDistance(5, 'kilometers', '31.2467601', '29.9020376');
+$fiveKmAddresses = \App\Models\User::findByDistance(5, 'kilometers', '31.2467601', '29.9020376')->get();
 
-// Alternative method to find users with certain radius
-$user = new User();
-$users = $location->lat('31.2467601')->lng('29.9020376')->within(5, 'kilometers')->get();
+// Alternative method to find users within certain radius
+$user = new \App\Models\User();
+$users = $user->lat('31.2467601')->lng('29.9020376')->within(5, 'kilometers')->get();
 ```
 
 

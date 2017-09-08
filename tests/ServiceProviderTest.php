@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Addressable\Test;
+namespace Rinvex\Addresses\Test;
 
 use ReflectionClass;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Illuminate\Container\Container;
 use Illuminate\Support\ServiceProvider;
-use Rinvex\Addressable\AddressableServiceProvider;
+use Rinvex\Addresses\Providers\AddressesServiceProvider;
 
-class ServiceProviderTest extends PHPUnit_Framework_TestCase
+class ServiceProviderTest extends TestCase
 {
     /** Get the service provider class. */
     protected function getServiceProviderClass(): string
     {
-        return AddressableServiceProvider::class;
+        return AddressesServiceProvider::class;
     }
 
     /** @test */
