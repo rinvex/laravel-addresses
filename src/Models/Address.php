@@ -35,8 +35,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property bool                                               $is_primary
  * @property bool                                               $is_billing
  * @property bool                                               $is_shipping
- * @property \Carbon\Carbon                                     $created_at
- * @property \Carbon\Carbon                                     $updated_at
+ * @property \Carbon\Carbon|null                                $created_at
+ * @property \Carbon\Carbon|null                                $updated_at
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $addressable
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address inCountry($countryCode)
