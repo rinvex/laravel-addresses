@@ -3,7 +3,6 @@
 **Rinvex Addresses** is a polymorphic Laravel package, for addressbook management. You can add addresses to any eloquent model with ease.
 
 [![Packagist](https://img.shields.io/packagist/v/rinvex/addresses.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/rinvex/addresses)
-[![VersionEye Dependencies](https://img.shields.io/versioneye/d/php/rinvex:addresses.svg?label=Dependencies&style=flat-square)](https://www.versioneye.com/php/rinvex:addresses/)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/addresses.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/addresses/)
 [![Code Climate](https://img.shields.io/codeclimate/github/rinvex/addresses.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/addresses)
 [![Travis](https://img.shields.io/travis/rinvex/addresses.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/addresses)
