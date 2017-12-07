@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Rinvex\Addresses\Contracts\AddressContract;
 use Rinvex\Addresses\Console\Commands\MigrateCommand;
 use Rinvex\Addresses\Console\Commands\PublishCommand;
+use Rinvex\Addresses\Console\Commands\RollbackCommand;
 
 class AddressesServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,7 @@ class AddressesServiceProvider extends ServiceProvider
     protected $commands = [
         MigrateCommand::class => 'command.rinvex.addresses.migrate',
         PublishCommand::class => 'command.rinvex.addresses.publish',
+        RollbackCommand::class => 'command.rinvex.addresses.rollback',
     ];
 
     /**
