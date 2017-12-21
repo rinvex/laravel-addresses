@@ -140,7 +140,27 @@ class Address extends Model implements AddressContract
      *
      * @var array
      */
-    protected $rules = [];
+    protected $rules = [
+        'addressable_id' => 'required|integer',
+        'addressable_type' => 'required|string|max:150',
+        'label' => 'nullable|string|max:150',
+        'name_prefix' => 'nullable|string|max:150',
+        'first_name' => 'nullable|string|max:150',
+        'middle_name' => 'nullable|string|max:150',
+        'last_name' => 'nullable|string|max:150',
+        'name_suffix' => 'nullable|string|max:150',
+        'organization' => 'nullable|string|max:150',
+        'country_code' => 'nullable|alpha|size:2|country',
+        'street' => 'nullable|string|max:150',
+        'state' => 'nullable|string|max:150',
+        'city' => 'nullable|string|max:150',
+        'postal_code' => 'nullable|string|max:150',
+        'lat' => 'nullable|numeric',
+        'lng' => 'nullable|numeric',
+        'is_primary' => 'sometimes|boolean',
+        'is_billing' => 'sometimes|boolean',
+        'is_shipping' => 'sometimes|boolean',
+    ];
 
     /**
      * Whether the model should throw a
@@ -160,27 +180,6 @@ class Address extends Model implements AddressContract
         parent::__construct($attributes);
 
         $this->setTable(config('rinvex.addresses.tables.addresses'));
-        $this->setRules([
-            'addressable_id' => 'required|integer',
-            'addressable_type' => 'required|string|max:150',
-            'label' => 'nullable|string|max:150',
-            'name_prefix' => 'nullable|string|max:150',
-            'first_name' => 'nullable|string|max:150',
-            'middle_name' => 'nullable|string|max:150',
-            'last_name' => 'nullable|string|max:150',
-            'name_suffix' => 'nullable|string|max:150',
-            'organization' => 'nullable|string|max:150',
-            'country_code' => 'nullable|alpha|size:2|country',
-            'street' => 'nullable|string|max:150',
-            'state' => 'nullable|string|max:150',
-            'city' => 'nullable|string|max:150',
-            'postal_code' => 'nullable|string|max:150',
-            'lat' => 'nullable|numeric',
-            'lng' => 'nullable|numeric',
-            'is_primary' => 'sometimes|boolean',
-            'is_billing' => 'sometimes|boolean',
-            'is_shipping' => 'sometimes|boolean',
-        ]);
     }
 
     /**
