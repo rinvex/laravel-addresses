@@ -27,26 +27,13 @@
 
 ## Usage
 
-### Create Your Model
+To add addresses support to your eloquent models simply use `\Rinvex\Addresses\Traits\Addressable` trait.
 
-Simply create a new eloquent model, and use `\Rinvex\Addresses\Traits\Addressable` trait:
-
-```php
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
-use Rinvex\Addresses\Traits\Addressable;
-
-class User extends Model
-{
-    use Addressable;
-}
-```
-
-### Manage Your Addresses
+### Manage your addresses
 
 ```php
-$user = new \App\Models\User();
+// Get instance of your model
+$user = new \App\Models\User::find(1);
 
 // Create a new address
 $user->addresses()->create([
@@ -91,13 +78,13 @@ $address->delete();
 $user->addresses()->where('id', 123)->first()->delete();
 ```
 
-### Manage Your Addressable Model
+### Manage your addressable model
 
 The API is intutive and very straightfarwad, so let's give it a quick look:
 
 ```php
-// Instantiate your model
-$user = new \App\Models\User();
+// Get instance of your model
+$user = new \App\Models\User::find(1);
 
 // Get attached addresses collection
 $user->addresses;
