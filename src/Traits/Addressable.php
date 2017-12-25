@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Rinvex\Addresses\Traits;
 
 use Illuminate\Support\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait Addressable
