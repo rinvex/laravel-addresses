@@ -46,7 +46,7 @@
         }
     ],
     "require": {
-        "php": "^7.0.0",
+        "php": "^7.1.0",
         "jackpopp/geodistance": "^1.2",
         "illuminate/console": "~5.5.0",
         "illuminate/support": "~5.5.0",
