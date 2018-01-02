@@ -47,18 +47,17 @@
     ],
     "require": {
         "php": "^7.1.0",
-        "jackpopp/geodistance": "^1.2",
         "illuminate/console": "~5.5.0",
-        "illuminate/support": "~5.5.0",
         "illuminate/database": "~5.5.0",
+        "illuminate/support": "~5.5.0",
+        "jackpopp/geodistance": "^1.2",
         "rinvex/cacheable": "dev-develop",
-        "rinvex/support": "dev-develop",
-        "roave/security-advisories": "dev-master"
+        "rinvex/support": "dev-develop"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.0.0",
+        "codedungeon/phpunit-result-printer": "^0.4.0",
         "illuminate/container": "~5.5.0",
-        "codedungeon/phpunit-result-printer": "^0.4.0"
+        "phpunit/phpunit": "^6.0.0"
     },
     "autoload": {
         "classmap": [
@@ -74,8 +73,8 @@
         }
     },
     "config": {
-        "preferred-install": "dist",
         "sort-packages": true,
+        "preferred-install": "dist",
         "optimize-autoloader": true
     },
     "extra": {
