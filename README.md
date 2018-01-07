@@ -63,7 +63,7 @@ $user->addresses()->create([
     'street' => '56 john doe st.',
     'state' => 'Alexandria',
     'city' => 'Alexandria',
-    'useral_code' => '21614',
+    'postal_code' => '21614',
     'lat' => '31.2467601',
     'lng' => '29.9020376',
     'is_primary' => true,
@@ -95,7 +95,7 @@ $user->addresses()->where('id', 123)->first()->delete();
 
 ### Manage Your Addressable Model
 
-The API is intutive and very straightfarwad, so let's give it a quick look:
+The API is intuitive and very straight forward, so let's give it a quick look:
 
 ```php
 // Instantiate your model
@@ -169,4 +169,4 @@ Rinvex is a software solutions startup, specialized in integrated enterprise sol
 
 This software is released under [The MIT License (MIT)](LICENSE).
 
-(c) 2016-2017 Rinvex LLC, Some rights reserved.
+(c) 2016-2018 Rinvex LLC, Some rights reserved.
