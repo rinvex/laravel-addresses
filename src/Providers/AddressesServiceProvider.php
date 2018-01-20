@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Rinvex\Addresses\Providers;
 
+use Rinvex\Addresses\Models\Address;
 use Illuminate\Support\ServiceProvider;
-use Rinvex\Addresses\Contracts\AddressContract;
 use Rinvex\Addresses\Console\Commands\MigrateCommand;
 use Rinvex\Addresses\Console\Commands\PublishCommand;
 use Rinvex\Addresses\Console\Commands\RollbackCommand;
@@ -35,7 +35,7 @@ class AddressesServiceProvider extends ServiceProvider
         $this->app->singleton('rinvex.addresses.address', function ($app) {
             return new $app['config']['rinvex.addresses.models.address']();
         });
-        $this->app->alias('rinvex.addresses.address', AddressContract::class);
+        $this->app->alias('rinvex.addresses.address', Address::class);
 
         // Register console commands
         ! $this->app->runningInConsole() || $this->registerCommands();
