@@ -10,6 +10,6 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 - Rename package rinvex/addresses from rinvex/addressable
 
 ## v0.0.1 - 2017-04-07
-- Commit first draft
+- Tag first release
 
 [v0.0.2]: https://github.com/rinvex/addresses/compare/v0.0.1...v0.0.2
