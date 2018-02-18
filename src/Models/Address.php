@@ -9,7 +9,6 @@ use Rinvex\Cacheable\CacheableEloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Jackpopp\GeoDistance\GeoDistanceTrait;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Addresses\Contracts\AddressContract;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
@@ -35,8 +34,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property bool                                               $is_primary
  * @property bool                                               $is_billing
  * @property bool                                               $is_shipping
- * @property \Carbon\Carbon                                     $created_at
- * @property \Carbon\Carbon                                     $updated_at
+ * @property \Carbon\Carbon|null                                $created_at
+ * @property \Carbon\Carbon|null                                $updated_at
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $addressable
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address inCountry($countryCode)
@@ -70,7 +69,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address within($distance, $measurement = null, $lat = null, $lng = null)
  * @mixin \Eloquent
  */
-class Address extends Model implements AddressContract
+class Address extends Model
 {
     use ValidatingTrait;
     use GeoDistanceTrait;
@@ -140,7 +139,27 @@ class Address extends Model implements AddressContract
      *
      * @var array
      */
-    protected $rules = [];
+    protected $rules = [
+        'addressable_id' => 'required|integer',
+        'addressable_type' => 'required|string|max:150',
+        'label' => 'nullable|string|max:150',
+        'name_prefix' => 'nullable|string|max:150',
+        'first_name' => 'nullable|string|max:150',
+        'middle_name' => 'nullable|string|max:150',
+        'last_name' => 'nullable|string|max:150',
+        'name_suffix' => 'nullable|string|max:150',
+        'organization' => 'nullable|string|max:150',
+        'country_code' => 'nullable|alpha|size:2',
+        'street' => 'nullable|string|max:150',
+        'state' => 'nullable|string|max:150',
+        'city' => 'nullable|string|max:150',
+        'postal_code' => 'nullable|string|max:150',
+        'lat' => 'nullable|numeric',
+        'lng' => 'nullable|numeric',
+        'is_primary' => 'sometimes|boolean',
+        'is_billing' => 'sometimes|boolean',
+        'is_shipping' => 'sometimes|boolean',
+    ];
 
     /**
      * Whether the model should throw a
@@ -160,27 +179,6 @@ class Address extends Model implements AddressContract
         parent::__construct($attributes);
 
         $this->setTable(config('rinvex.addresses.tables.addresses'));
-        $this->setRules([
-            'addressable_id' => 'required|integer',
-            'addressable_type' => 'required|string|max:150',
-            'label' => 'nullable|string|max:150',
-            'name_prefix' => 'nullable|string|max:150',
-            'first_name' => 'nullable|string|max:150',
-            'middle_name' => 'nullable|string|max:150',
-            'last_name' => 'nullable|string|max:150',
-            'name_suffix' => 'nullable|string|max:150',
-            'organization' => 'nullable|string|max:150',
-            'country_code' => 'nullable|alpha|size:2|country',
-            'street' => 'nullable|string|max:150',
-            'state' => 'nullable|string|max:150',
-            'city' => 'nullable|string|max:150',
-            'postal_code' => 'nullable|string|max:150',
-            'lat' => 'nullable|numeric',
-            'lng' => 'nullable|numeric',
-            'is_primary' => 'sometimes|boolean',
-            'is_billing' => 'sometimes|boolean',
-            'is_shipping' => 'sometimes|boolean',
-        ]);
     }
 
     /**

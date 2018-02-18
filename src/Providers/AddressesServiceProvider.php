@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Rinvex\Addresses\Providers;
 
+use Rinvex\Addresses\Models\Address;
 use Illuminate\Support\ServiceProvider;
-use Rinvex\Addresses\Contracts\AddressContract;
 use Rinvex\Addresses\Console\Commands\MigrateCommand;
+use Rinvex\Addresses\Console\Commands\PublishCommand;
+use Rinvex\Addresses\Console\Commands\RollbackCommand;
 
 class AddressesServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,8 @@ class AddressesServiceProvider extends ServiceProvider
      */
     protected $commands = [
         MigrateCommand::class => 'command.rinvex.addresses.migrate',
+        PublishCommand::class => 'command.rinvex.addresses.publish',
+        RollbackCommand::class => 'command.rinvex.addresses.rollback',
     ];
 
     /**
@@ -28,10 +32,8 @@ class AddressesServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'rinvex.addresses');
 
         // Bind eloquent models to IoC container
-        $this->app->singleton('rinvex.addresses.address', function ($app) {
-            return new $app['config']['rinvex.addresses.models.address']();
-        });
-        $this->app->alias('rinvex.addresses.address', AddressContract::class);
+        $this->app->singleton('rinvex.addresses.address', $addressModel = $this->app['config']['rinvex.addresses.models.address']);
+        $addressModel === Address::class || $this->app->alias('rinvex.addresses.address', Address::class);
 
         // Register console commands
         ! $this->app->runningInConsole() || $this->registerCommands();
@@ -54,7 +56,7 @@ class AddressesServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function publishResources()
+    protected function publishResources(): void
     {
         $this->publishes([realpath(__DIR__.'/../../config/config.php') => config_path('rinvex.addresses.php')], 'rinvex-addresses-config');
         $this->publishes([realpath(__DIR__.'/../../database/migrations') => database_path('migrations')], 'rinvex-addresses-migrations');
@@ -65,13 +67,11 @@ class AddressesServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerCommands()
+    protected function registerCommands(): void
     {
         // Register artisan commands
         foreach ($this->commands as $key => $value) {
-            $this->app->singleton($value, function ($app) use ($key) {
-                return new $key();
-            });
+            $this->app->singleton($value, $key);
         }
 
         $this->commands(array_values($this->commands));

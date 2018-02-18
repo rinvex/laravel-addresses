@@ -3,11 +3,9 @@
 **Rinvex Addresses** is a polymorphic Laravel package, for addressbook management. You can add addresses to any eloquent model with ease.
 
 [![Packagist](https://img.shields.io/packagist/v/rinvex/addresses.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/rinvex/addresses)
-[![VersionEye Dependencies](https://img.shields.io/versioneye/d/php/rinvex:addresses.svg?label=Dependencies&style=flat-square)](https://www.versioneye.com/php/rinvex:addresses/)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/addresses.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/addresses/)
 [![Code Climate](https://img.shields.io/codeclimate/github/rinvex/addresses.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/addresses)
 [![Travis](https://img.shields.io/travis/rinvex/addresses.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/addresses)
-[![SensioLabs Insight](https://img.shields.io/sensiolabs/i/8a185d9d-f23a-4782-b71c-aa35ee74d385.svg?label=SensioLabs&style=flat-square)](https://insight.sensiolabs.com/projects/8a185d9d-f23a-4782-b71c-aa35ee74d385)
 [![StyleCI](https://styleci.io/repos/87485079/shield)](https://styleci.io/repos/87485079)
 [![License](https://img.shields.io/packagist/l/rinvex/addresses.svg?label=License&style=flat-square)](https://github.com/rinvex/addresses/blob/develop/LICENSE)
 
@@ -29,26 +27,13 @@
 
 ## Usage
 
-### Create Your Model
+To add addresses support to your eloquent models simply use `\Rinvex\Addresses\Traits\Addressable` trait.
 
-Simply create a new eloquent model, and use `\Rinvex\Addresses\Traits\Addressable` trait:
-
-```php
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
-use Rinvex\Addresses\Traits\Addressable;
-
-class User extends Model
-{
-    use Addressable;
-}
-```
-
-### Manage Your Addresses
+### Manage your addresses
 
 ```php
-$user = new \App\Models\User();
+// Get instance of your model
+$user = new \App\Models\User::find(1);
 
 // Create a new address
 $user->addresses()->create([
@@ -63,7 +48,7 @@ $user->addresses()->create([
     'street' => '56 john doe st.',
     'state' => 'Alexandria',
     'city' => 'Alexandria',
-    'useral_code' => '21614',
+    'postal_code' => '21614',
     'lat' => '31.2467601',
     'lng' => '29.9020376',
     'is_primary' => true,
@@ -93,13 +78,13 @@ $address->delete();
 $user->addresses()->where('id', 123)->first()->delete();
 ```
 
-### Manage Your Addressable Model
+### Manage your addressable model
 
-The API is intutive and very straightfarwad, so let's give it a quick look:
+The API is intuitive and very straight forward, so let's give it a quick look:
 
 ```php
-// Instantiate your model
-$user = new \App\Models\User();
+// Get instance of your model
+$user = new \App\Models\User::find(1);
 
 // Get attached addresses collection
 $user->addresses;
@@ -169,4 +154,4 @@ Rinvex is a software solutions startup, specialized in integrated enterprise sol
 
 This software is released under [The MIT License (MIT)](LICENSE).
 
-(c) 2016-2017 Rinvex LLC, Some rights reserved.
+(c) 2016-2018 Rinvex LLC, Some rights reserved.
