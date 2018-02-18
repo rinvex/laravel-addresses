@@ -48,7 +48,7 @@ $user->addresses()->create([
     'street' => '56 john doe st.',
     'state' => 'Alexandria',
     'city' => 'Alexandria',
-    'useral_code' => '21614',
+    'postal_code' => '21614',
     'lat' => '31.2467601',
     'lng' => '29.9020376',
     'is_primary' => true,
@@ -80,7 +80,7 @@ $user->addresses()->where('id', 123)->first()->delete();
 
 ### Manage your addressable model
 
-The API is intutive and very straightfarwad, so let's give it a quick look:
+The API is intuitive and very straight forward, so let's give it a quick look:
 
 ```php
 // Get instance of your model
