@@ -149,7 +149,7 @@ class Address extends Model
         'last_name' => 'nullable|string|max:150',
         'name_suffix' => 'nullable|string|max:150',
         'organization' => 'nullable|string|max:150',
-        'country_code' => 'nullable|alpha|size:2|country',
+        'country_code' => 'nullable|alpha|size:2',
         'street' => 'nullable|string|max:150',
         'state' => 'nullable|string|max:150',
         'city' => 'nullable|string|max:150',
