@@ -52,6 +52,7 @@
         "illuminate/support": "~5.6.0",
         "jackpopp/geodistance": "^1.2",
         "rinvex/cacheable": "dev-develop",
+        "rinvex/country": "dev-develop",
         "rinvex/support": "dev-develop"
     },
     "require-dev": {
