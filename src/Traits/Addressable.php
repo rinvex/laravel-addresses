@@ -58,15 +58,15 @@ trait Addressable
      *
      * @param string $distance
      * @param string $unit
-     * @param string $lat
-     * @param string $lng
+     * @param string $latitude
+     * @param string $longitude
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function findByDistance($distance, $unit, $lat, $lng): Collection
+    public static function findByDistance($distance, $unit, $latitude, $longitude): Collection
     {
         $addressModel = config('rinvex.addresses.models.address');
-        $records = (new $addressModel())->within($distance, $unit, $lat, $lng)->get();
+        $records = (new $addressModel())->within($distance, $unit, $latitude, $longitude)->get();
 
         $results = [];
         foreach ($records as $record) {

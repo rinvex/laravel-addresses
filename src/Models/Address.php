@@ -29,8 +29,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string                                             $state
  * @property string                                             $city
  * @property string                                             $postal_code
- * @property float                                              $lat
- * @property float                                              $lng
+ * @property float                                              $latitude
+ * @property float                                              $longitude
  * @property bool                                               $is_primary
  * @property bool                                               $is_billing
  * @property bool                                               $is_shipping
@@ -43,7 +43,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address isBilling()
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address isPrimary()
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address isShipping()
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address outside($distance, $measurement = null, $lat = null, $lng = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address outside($distance, $measurement = null, $latitude = null, $longitude = null)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereAddressableId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereAddressableType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereCity($value)
@@ -56,8 +56,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsShipping($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLabel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLastName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLat($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLng($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLatitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLongitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereMiddleName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereNamePrefix($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereNameSuffix($value)
@@ -66,7 +66,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereState($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereStreet($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address within($distance, $measurement = null, $lat = null, $lng = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address within($distance, $measurement = null, $latitude = null, $longitude = null)
  * @mixin \Eloquent
  */
 class Address extends Model
@@ -93,8 +93,8 @@ class Address extends Model
         'state',
         'city',
         'postal_code',
-        'lat',
-        'lng',
+        'latitude',
+        'longitude',
         'is_primary',
         'is_billing',
         'is_shipping',
@@ -118,8 +118,8 @@ class Address extends Model
         'state' => 'string',
         'city' => 'string',
         'postal_code' => 'string',
-        'lat' => 'float',
-        'lng' => 'float',
+        'latitude' => 'float',
+        'longitude' => 'float',
         'is_primary' => 'boolean',
         'is_billing' => 'boolean',
         'is_shipping' => 'boolean',
@@ -154,8 +154,8 @@ class Address extends Model
         'state' => 'nullable|string|max:150',
         'city' => 'nullable|string|max:150',
         'postal_code' => 'nullable|string|max:150',
-        'lat' => 'nullable|numeric',
-        'lng' => 'nullable|numeric',
+        'latitude' => 'nullable|numeric',
+        'longitude' => 'nullable|numeric',
         'is_primary' => 'sometimes|boolean',
         'is_billing' => 'sometimes|boolean',
         'is_shipping' => 'sometimes|boolean',
@@ -270,8 +270,8 @@ class Address extends Model
                 $geocode = json_decode(file_get_contents("https://maps.google.com/maps/api/geocode/json?address={$query}&sensor=false"));
 
                 if (count($geocode->results)) {
-                    $address->lat = $geocode->results[0]->geometry->location->lat;
-                    $address->lng = $geocode->results[0]->geometry->location->lng;
+                    $address->latitude = $geocode->results[0]->geometry->location->lat;
+                    $address->longitude = $geocode->results[0]->geometry->location->lng;
                 }
             }
         });
