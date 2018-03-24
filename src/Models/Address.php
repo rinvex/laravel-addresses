@@ -127,7 +127,7 @@ class Address extends Model
         'addressable_id' => 'required|integer',
         'addressable_type' => 'required|string|max:150',
         'label' => 'nullable|string|max:150',
-        'full_name' => 'nullable|string|max:150',
+        'full_name' => 'required|string|max:150',
         'organization' => 'nullable|string|max:150',
         'country_code' => 'nullable|alpha|size:2|country',
         'street' => 'nullable|string|max:150',
