@@ -18,11 +18,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property int                                                $addressable_id
  * @property string                                             $addressable_type
  * @property string                                             $label
- * @property string                                             $name_prefix
- * @property string                                             $first_name
- * @property string                                             $middle_name
- * @property string                                             $last_name
- * @property string                                             $name_suffix
+ * @property string                                             $full_name
  * @property string                                             $organization
  * @property string                                             $country_code
  * @property string                                             $street
@@ -49,18 +45,14 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereCountryCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereFullName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsBilling($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsPrimary($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsShipping($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLabel($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLatitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLongitude($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereMiddleName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereNamePrefix($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereNameSuffix($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereOrganization($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address wherePostalCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereState($value)
@@ -82,11 +74,7 @@ class Address extends Model
         'addressable_id',
         'addressable_type',
         'label',
-        'name_prefix',
-        'first_name',
-        'middle_name',
-        'last_name',
-        'name_suffix',
+        'full_name',
         'organization',
         'country_code',
         'street',
@@ -107,11 +95,7 @@ class Address extends Model
         'addressable_id' => 'integer',
         'addressable_type' => 'string',
         'label' => 'string',
-        'name_prefix' => 'string',
-        'first_name' => 'string',
-        'middle_name' => 'string',
-        'last_name' => 'string',
-        'name_suffix' => 'string',
+        'full_name' => 'string',
         'organization' => 'string',
         'country_code' => 'string',
         'street' => 'string',
@@ -143,11 +127,7 @@ class Address extends Model
         'addressable_id' => 'required|integer',
         'addressable_type' => 'required|string|max:150',
         'label' => 'nullable|string|max:150',
-        'name_prefix' => 'nullable|string|max:150',
-        'first_name' => 'nullable|string|max:150',
-        'middle_name' => 'nullable|string|max:150',
-        'last_name' => 'nullable|string|max:150',
-        'name_suffix' => 'nullable|string|max:150',
+        'full_name' => 'nullable|string|max:150',
         'organization' => 'nullable|string|max:150',
         'country_code' => 'nullable|alpha|size:2|country',
         'street' => 'nullable|string|max:150',

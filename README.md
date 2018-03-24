@@ -38,11 +38,7 @@ $user = new \App\Models\User::find(1);
 // Create a new address
 $user->addresses()->create([
     'label' => 'Default Address',
-    'name_prefix' => 'Mr.',
-    'first_name' => 'Abdelrahman',
-    'middle_name' => 'Hossam M. M.',
-    'last_name' => 'Omran',
-    'name_suffix' => null,
+    'full_name' => 'Abdelrahman Omran',
     'organization' => 'Rinvex',
     'country_code' => 'eg',
     'street' => '56 john doe st.',
