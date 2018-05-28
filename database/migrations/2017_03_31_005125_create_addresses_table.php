@@ -13,7 +13,8 @@ class CreateAddressesTable extends Migration
             // Columns
             $table->increments('id');
             $table->morphs('addressable');
-            $table->string('full_name');
+            $table->string('given_name');
+            $table->string('family_name');
             $table->string('label')->nullable();
             $table->string('organization')->nullable();
             $table->string('country_code', 2)->nullable();

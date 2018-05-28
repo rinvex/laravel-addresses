@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property int                                                $addressable_id
  * @property string                                             $addressable_type
  * @property string                                             $label
+ * @property string                                             $given_name
+ * @property string                                             $family_name
  * @property string                                             $full_name
  * @property string                                             $organization
  * @property string                                             $country_code
@@ -45,7 +47,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereCountryCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereFullName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereFamilyName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereGivenName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsBilling($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsPrimary($value)
@@ -74,7 +77,8 @@ class Address extends Model
         'addressable_id',
         'addressable_type',
         'label',
-        'full_name',
+        'given_name',
+        'family_name',
         'organization',
         'country_code',
         'street',
@@ -95,7 +99,8 @@ class Address extends Model
         'addressable_id' => 'integer',
         'addressable_type' => 'string',
         'label' => 'string',
-        'full_name' => 'string',
+        'given_name' => 'string',
+        'family_name' => 'string',
         'organization' => 'string',
         'country_code' => 'string',
         'street' => 'string',
@@ -127,7 +132,8 @@ class Address extends Model
         'addressable_id' => 'required|integer',
         'addressable_type' => 'required|string|max:150',
         'label' => 'nullable|string|max:150',
-        'full_name' => 'required|string|max:150',
+        'given_name' => 'required|string|max:150',
+        'family_name' => 'nullable|string|max:150',
         'organization' => 'nullable|string|max:150',
         'country_code' => 'nullable|alpha|size:2|country',
         'street' => 'nullable|string|max:150',
@@ -231,6 +237,16 @@ class Address extends Model
     public function scopeInLanguage(Builder $builder, string $languageCode): Builder
     {
         return $builder->where('language_code', $languageCode);
+    }
+
+    /**
+     * Get full name attribute.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute(): string
+    {
+        return implode(' ', [$this->given_name, $this->family_name]);
     }
 
     /**
