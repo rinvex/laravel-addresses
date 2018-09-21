@@ -38,19 +38,16 @@ $user = new \App\Models\User::find(1);
 // Create a new address
 $user->addresses()->create([
     'label' => 'Default Address',
-    'name_prefix' => 'Mr.',
-    'first_name' => 'Abdelrahman',
-    'middle_name' => 'Hossam M. M.',
-    'last_name' => 'Omran',
-    'name_suffix' => null,
+    'given_name' => 'Abdelrahman',
+    'family_name' => 'Omran',
     'organization' => 'Rinvex',
     'country_code' => 'eg',
     'street' => '56 john doe st.',
     'state' => 'Alexandria',
     'city' => 'Alexandria',
     'postal_code' => '21614',
-    'lat' => '31.2467601',
-    'lng' => '29.9020376',
+    'latitude' => '31.2467601',
+    'longitude' => '29.9020376',
     'is_primary' => true,
     'is_billing' => true,
     'is_shipping' => true,
@@ -104,7 +101,7 @@ $shippingAddresses = app('rinvex.addresses.address')->isShipping()->get();
 // Scope Addresses in the given country
 $egyptianAddresses = app('rinvex.addresses.address')->InCountry('eg')->get();
 
-// Find all users within 5 kilometers radius from the lat/lng 31.2467601/29.9020376
+// Find all users within 5 kilometers radius from the latitude/longitude 31.2467601/29.9020376
 $fiveKmAddresses = \App\Models\User::findByDistance(5, 'kilometers', '31.2467601', '29.9020376')->get();
 
 // Alternative method to find users within certain radius

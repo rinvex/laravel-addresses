@@ -52,10 +52,11 @@
         "illuminate/support": "~5.6.0",
         "jackpopp/geodistance": "^1.2",
         "rinvex/cacheable": "dev-develop",
+        "rinvex/country": "dev-develop",
         "rinvex/support": "dev-develop"
     },
     "require-dev": {
-        "codedungeon/phpunit-result-printer": "^0.6.0",
+        "codedungeon/phpunit-result-printer": "^0.19.0",
         "illuminate/container": "~5.6.0",
         "phpunit/phpunit": "^7.0.0"
     },
