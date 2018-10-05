@@ -53,7 +53,7 @@
         "illuminate/support": "~5.7.0",
         "jackpopp/geodistance": "^1.2",
         "rinvex/laravel-cacheable": "^1.0.0",
-        "rinvex/countries": "v5.0.0",
+        "rinvex/countries": "^5.0.0",
         "rinvex/laravel-support": "v1.0.0"
     },
     "require-dev": {
