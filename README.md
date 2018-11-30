@@ -24,6 +24,11 @@
 
 3. Done!
 
+Optional if you want to change the configurations do:
+    ```
+    php artisan vendor:publish  --tag=rinvex-addresses-config
+    ```
+
 
 ## Usage
 
