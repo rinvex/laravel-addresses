@@ -51,13 +51,13 @@
         "illuminate/console": "~5.7.0",
         "illuminate/database": "~5.7.0",
         "illuminate/support": "~5.7.0",
-        "jackpopp/geodistance": "^1.2",
+        "jackpopp/geodistance": "^1.2.0",
         "rinvex/laravel-cacheable": "^1.0.0",
         "rinvex/countries": "^5.0.0",
-        "rinvex/laravel-support": "v1.0.0"
+        "rinvex/laravel-support": "^1.0.0"
     },
     "require-dev": {
-        "codedungeon/phpunit-result-printer": "^0.22.0",
+        "codedungeon/phpunit-result-printer": "^0.23.0",
         "illuminate/container": "~5.7.0",
         "phpunit/phpunit": "^7.0.0"
     },
