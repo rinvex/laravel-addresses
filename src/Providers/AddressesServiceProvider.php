@@ -6,12 +6,15 @@ namespace Rinvex\Addresses\Providers;
 
 use Rinvex\Addresses\Models\Address;
 use Illuminate\Support\ServiceProvider;
+use Rinvex\Support\Traits\ConsoleTools;
 use Rinvex\Addresses\Console\Commands\MigrateCommand;
 use Rinvex\Addresses\Console\Commands\PublishCommand;
 use Rinvex\Addresses\Console\Commands\RollbackCommand;
 
 class AddressesServiceProvider extends ServiceProvider
 {
+    use ConsoleTools;
+
     /**
      * The commands to be registered.
      *
@@ -36,7 +39,7 @@ class AddressesServiceProvider extends ServiceProvider
         $addressModel === Address::class || $this->app->alias('rinvex.addresses.address', Address::class);
 
         // Register console commands
-        ! $this->app->runningInConsole() || $this->registerCommands();
+        ! $this->app->runningInConsole() || $this->registersCommands();
     }
 
     /**
@@ -44,36 +47,8 @@ class AddressesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Load migrations
-        ! $this->app->runningInConsole() || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-
         // Publish Resources
-        ! $this->app->runningInConsole() || $this->publishResources();
-    }
-
-    /**
-     * Publish resources.
-     *
-     * @return void
-     */
-    protected function publishResources(): void
-    {
-        $this->publishes([realpath(__DIR__.'/../../config/config.php') => config_path('rinvex.addresses.php')], 'rinvex-addresses-config');
-        $this->publishes([realpath(__DIR__.'/../../database/migrations') => database_path('migrations')], 'rinvex-addresses-migrations');
-    }
-
-    /**
-     * Register console commands.
-     *
-     * @return void
-     */
-    protected function registerCommands(): void
-    {
-        // Register artisan commands
-        foreach ($this->commands as $key => $value) {
-            $this->app->singleton($value, $key);
-        }
-
-        $this->commands(array_values($this->commands));
+        ! $this->app->runningInConsole() || $this->publishesConfig('rinvex/laravel-addresses');
+        ! $this->app->runningInConsole() || $this->publishesMigrations('rinvex/laravel-addresses');
     }
 }

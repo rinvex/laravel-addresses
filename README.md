@@ -17,14 +17,14 @@
     composer require rinvex/laravel-addresses
     ```
 
-2. Execute migrations via the following command:
-    ```
-    php artisan rinvex:migrate:addresses
-    ```
-
-3. **Optional** if you want to change the configurations:
+2. Publish resources (migrations and config files):
     ```shell
     php artisan rinvex:publish:addresses
+    ```
+
+3. Execute migrations via the following command:
+    ```shell
+    php artisan rinvex:migrate:addresses
     ```
 
 4. Done!
