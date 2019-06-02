@@ -4,7 +4,6 @@
 
 [![Packagist](https://img.shields.io/packagist/v/rinvex/laravel-addresses.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/rinvex/laravel-addresses)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/laravel-addresses.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/laravel-addresses/)
-[![Code Climate](https://img.shields.io/codeclimate/github/rinvex/laravel-addresses.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/laravel-addresses)
 [![Travis](https://img.shields.io/travis/rinvex/laravel-addresses.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/laravel-addresses)
 [![StyleCI](https://styleci.io/repos/87485079/shield)](https://styleci.io/repos/87485079)
 [![License](https://img.shields.io/packagist/l/rinvex/laravel-addresses.svg?label=License&style=flat-square)](https://github.com/rinvex/laravel-addresses/blob/develop/LICENSE)
@@ -17,14 +16,14 @@
     composer require rinvex/laravel-addresses
     ```
 
-2. Execute migrations via the following command:
-    ```
-    php artisan rinvex:migrate:addresses
-    ```
-
-3. **Optional** if you want to change the configurations:
+2. Publish resources (migrations and config files):
     ```shell
     php artisan rinvex:publish:addresses
+    ```
+
+3. Execute migrations via the following command:
+    ```shell
+    php artisan rinvex:migrate:addresses
     ```
 
 4. Done!
