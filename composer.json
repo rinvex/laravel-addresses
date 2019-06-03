@@ -52,9 +52,9 @@
         "illuminate/database": "~5.8.0",
         "illuminate/support": "~5.8.0",
         "jackpopp/geodistance": "^1.2.0",
-        "rinvex/laravel-cacheable": "^2.0.0",
+        "rinvex/laravel-cacheable": "^2.1.0",
         "rinvex/countries": "^6.0.0",
-        "rinvex/laravel-support": "^2.0.0"
+        "rinvex/laravel-support": "^2.1.0"
     },
     "require-dev": {
         "codedungeon/phpunit-result-printer": "^0.26.0",
