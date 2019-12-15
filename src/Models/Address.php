@@ -9,9 +9,9 @@ use Rinvex\Cacheable\CacheableEloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Jackpopp\GeoDistance\GeoDistanceTrait;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Rinvex\Testimonials\Events\AddressCreated;
 use Rinvex\Testimonials\Events\AddressDeleted;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * Rinvex\Addresses\Models\Address.
