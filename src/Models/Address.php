@@ -9,7 +9,7 @@ use Rinvex\Cacheable\CacheableEloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Jackpopp\GeoDistance\GeoDistanceTrait;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Testimonials\Events\AddressCreated;
+use Rinvex\Testimonials\Events\AddressSaved;
 use Rinvex\Testimonials\Events\AddressDeleted;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -131,7 +131,7 @@ class Address extends Model
      * @var array
      */
     protected $dispatchesEvents = [
-        'created' => AddressCreated::class,
+        'saved' => AddressSaved::class,
         'deleted' => AddressDeleted::class,
     ];
 

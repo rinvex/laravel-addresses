@@ -7,11 +7,13 @@ namespace Rinvex\Testimonials\Events;
 use Illuminate\Broadcasting\Channel;
 use Rinvex\Addresses\Models\Address;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class AddressDeleted implements ShouldBroadcast
 {
     use SerializesModels;
+    Use InteractsWithSockets;
 
     public $address;
 
