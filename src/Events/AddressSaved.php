@@ -44,7 +44,7 @@ class AddressSaved implements ShouldBroadcast
      */
     public function broadcastAs()
     {
-        return 'rinvex.addresses.created';
+        return 'rinvex.addresses.saved';
     }
 
     /**
@@ -54,6 +54,6 @@ class AddressSaved implements ShouldBroadcast
      */
     protected function formatChannelName(): string
     {
-        return 'rinvex.addresses.count';
+        return 'rinvex.addresses.list';
     }
 }

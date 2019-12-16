@@ -54,6 +54,6 @@ class AddressDeleted implements ShouldBroadcast
      */
     protected function formatChannelName(): string
     {
-        return 'rinvex.addresses.count';
+        return 'rinvex.addresses.list';
     }
 }
