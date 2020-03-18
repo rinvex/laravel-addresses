@@ -31,7 +31,11 @@ class MigrateCommand extends Command
     {
         $this->alert($this->description);
 
-        if (file_exists($path = 'database/migrations/rinvex/laravel-addresses')) {
+        $path = config('rinvex.addresses.autoload_migrations') ?
+            'vendor/rinvex/laravel-addresses/database/migrations' :
+            'database/migrations/rinvex/laravel-addresses';
+
+        if (file_exists($path)) {
             $this->call('migrate', [
                 '--step' => true,
                 '--path' => $path,
