@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v4.0.3] - 2020-04-04
+- Fix namespace issue
+
 ## [v4.0.2] - 2020-04-04
 - Enforce consistent artisan command tag namespacing
 - Enforce consistent package namespace
@@ -95,6 +98,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2017-04-07
 - Tag first release
 
+[v4.0.3]: https://github.com/rinvex/laravel-addresses/compare/v4.0.2...v4.0.3
 [v4.0.2]: https://github.com/rinvex/laravel-addresses/compare/v4.0.1...v4.0.2
 [v4.0.1]: https://github.com/rinvex/laravel-addresses/compare/v4.0.0...v4.0.1
 [v4.0.0]: https://github.com/rinvex/laravel-addresses/compare/v3.0.2...v4.0.0
