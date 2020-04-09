@@ -39,7 +39,7 @@ class AddressesServiceProvider extends ServiceProvider
         $addressModel === Address::class || $this->app->alias('rinvex.addresses.address', Address::class);
 
         // Register console commands
-        ! $this->app->runningInConsole() || $this->registerCommands();
+        $this->registerCommands();
     }
 
     /**
