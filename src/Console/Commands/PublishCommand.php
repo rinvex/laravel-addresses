@@ -13,7 +13,7 @@ class PublishCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'rinvex:publish:addresses {--f|force : Overwrite any existing files.} {--r|resource=all}';
+    protected $signature = 'rinvex:publish:addresses {--f|force : Overwrite any existing files.} {--r|resource=* : Specify which resources to publish.}';
 
     /**
      * The console command description.
@@ -31,18 +31,9 @@ class PublishCommand extends Command
     {
         $this->alert($this->description);
 
-        switch ($this->option('resource')) {
-            case 'config':
-                $this->call('vendor:publish', ['--tag' => 'rinvex/addresses::config', '--force' => $this->option('force')]);
-                break;
-            case 'migrations':
-                $this->call('vendor:publish', ['--tag' => 'rinvex/addresses::migrations', '--force' => $this->option('force')]);
-                break;
-            default:
-                $this->call('vendor:publish', ['--tag' => 'rinvex/addresses::config', '--force' => $this->option('force')]);
-                $this->call('vendor:publish', ['--tag' => 'rinvex/addresses::migrations', '--force' => $this->option('force')]);
-                break;
-        }
+        collect($this->option('resource'))->each(function ($resource) {
+            $this->call('vendor:publish', ['--tag' => "rinvex/addresses::{$resource}", '--force' => $this->option('force')]);
+        });
 
         $this->line('');
     }
