@@ -12,7 +12,7 @@ class CreateAddressesTable extends Migration
     {
         Schema::create(config('rinvex.addresses.tables.addresses'), function (Blueprint $table) {
             // Columns
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->morphs('addressable');
             $table->string('given_name');
             $table->string('family_name');
