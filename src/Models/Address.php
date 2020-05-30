@@ -142,16 +142,16 @@ class Address extends Model
      */
     protected $rules = [
         'addressable_id' => 'required|integer',
-        'addressable_type' => 'required|string|max:150',
-        'label' => 'nullable|string|max:150',
-        'given_name' => 'required|string|max:150',
-        'family_name' => 'nullable|string|max:150',
-        'organization' => 'nullable|string|max:150',
+        'addressable_type' => 'required|string|strip_tags|max:150',
+        'label' => 'nullable|string|strip_tags|max:150',
+        'given_name' => 'required|string|strip_tags|max:150',
+        'family_name' => 'nullable|string|strip_tags|max:150',
+        'organization' => 'nullable|string|strip_tags|max:150',
         'country_code' => 'nullable|alpha|size:2|country',
-        'street' => 'nullable|string|max:150',
-        'state' => 'nullable|string|max:150',
-        'city' => 'nullable|string|max:150',
-        'postal_code' => 'nullable|string|max:150',
+        'street' => 'nullable|string|strip_tags|max:150',
+        'state' => 'nullable|string|strip_tags|max:150',
+        'city' => 'nullable|string|strip_tags|max:150',
+        'postal_code' => 'nullable|string|strip_tags|max:150',
         'latitude' => 'nullable|numeric',
         'longitude' => 'nullable|numeric',
         'is_primary' => 'sometimes|boolean',
@@ -186,7 +186,7 @@ class Address extends Model
      */
     public function addressable(): MorphTo
     {
-        return $this->morphTo('addressable', 'addressable_type', 'addressable_id');
+        return $this->morphTo('addressable', 'addressable_type', 'addressable_id', 'id');
     }
 
     /**
