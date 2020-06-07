@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Testimonials\Events;
+namespace Rinvex\Addresses\Events;
 
 use Illuminate\Broadcasting\Channel;
 use Rinvex\Addresses\Models\Address;
