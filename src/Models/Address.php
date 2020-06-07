@@ -7,9 +7,9 @@ namespace Rinvex\Addresses\Models;
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Cacheable\CacheableEloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Rinvex\Addresses\Events\AddressSaved;
 use Jackpopp\GeoDistance\GeoDistanceTrait;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Addresses\Events\AddressSaved;
 use Rinvex\Addresses\Events\AddressDeleted;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
