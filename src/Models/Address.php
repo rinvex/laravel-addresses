@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Rinvex\Addresses\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Rinvex\Cacheable\CacheableEloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Rinvex\Addresses\Events\AddressSaved;
 use Jackpopp\GeoDistance\GeoDistanceTrait;
@@ -70,7 +69,6 @@ class Address extends Model
 {
     use ValidatingTrait;
     use GeoDistanceTrait;
-    use CacheableEloquent;
 
     /**
      * {@inheritdoc}
