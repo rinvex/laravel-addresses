@@ -52,7 +52,6 @@
         "illuminate/database": "^7.0.0",
         "illuminate/support": "^7.0.0",
         "jackpopp/geodistance": "^1.2.0",
-        "rinvex/laravel-cacheable": "^4.0.0",
         "rinvex/countries": "^7.0.0",
         "rinvex/laravel-support": "^4.0.0"
     },
