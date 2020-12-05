@@ -6,10 +6,12 @@ namespace Rinvex\Addresses\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Rinvex\Addresses\Events\AddressSaved;
-use Jackpopp\GeoDistance\GeoDistanceTrait;
 use Rinvex\Support\Traits\ValidatingTrait;
+use Jackpopp\GeoDistance\GeoDistanceTrait;
+use Rinvex\Addresses\Events\AddressCreated;
 use Rinvex\Addresses\Events\AddressDeleted;
+use Rinvex\Addresses\Events\AddressUpdated;
+use Rinvex\Addresses\Events\AddressRestored;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
@@ -129,8 +131,10 @@ class Address extends Model
      * @var array
      */
     protected $dispatchesEvents = [
-        'saved' => AddressSaved::class,
+        'created' => AddressCreated::class,
+        'updated' => AddressUpdated::class,
         'deleted' => AddressDeleted::class,
+        'restored' => AddressRestored::class,
     ];
 
     /**

@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 namespace Rinvex\Addresses\Events;
 
-use Illuminate\Broadcasting\Channel;
 use Rinvex\Addresses\Models\Address;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class AddressSaved implements ShouldBroadcast
+class AddressRestored implements ShouldBroadcast
 {
-    use SerializesModels;
     use InteractsWithSockets;
+    use SerializesModels;
+    use Dispatchable;
 
     /**
      * The name of the queue on which to place the event.
@@ -27,7 +29,7 @@ class AddressSaved implements ShouldBroadcast
      *
      * @var \Rinvex\Addresses\Models\Address
      */
-    public $address;
+    public Address $model;
 
     /**
      * Create a new event instance.
@@ -36,17 +38,20 @@ class AddressSaved implements ShouldBroadcast
      */
     public function __construct(Address $address)
     {
-        $this->address = $address;
+        $this->model = $address;
     }
 
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return \Illuminate\Broadcasting\Channel
+     * @return \Illuminate\Broadcasting\Channel|\Illuminate\Broadcasting\Channel[]
      */
     public function broadcastOn()
     {
-        return new Channel($this->formatChannelName());
+        return [
+            new PrivateChannel('rinvex.addresses.addresses.index'),
+            new PrivateChannel("rinvex.addresses.addresses.{$this->model->getRouteKey()}"),
+        ];
     }
 
     /**
@@ -56,16 +61,6 @@ class AddressSaved implements ShouldBroadcast
      */
     public function broadcastAs()
     {
-        return 'rinvex.addresses.saved';
-    }
-
-    /**
-     * Format channel name.
-     *
-     * @return string
-     */
-    protected function formatChannelName(): string
-    {
-        return 'rinvex.addresses.list';
+        return 'address.restored';
     }
 }

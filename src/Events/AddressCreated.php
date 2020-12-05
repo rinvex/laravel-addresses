@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace Rinvex\Addresses\Events;
 
 use Rinvex\Addresses\Models\Address;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class AddressDeleted implements ShouldBroadcast
+class AddressCreated implements ShouldBroadcast
 {
     use InteractsWithSockets;
+    use SerializesModels;
     use Dispatchable;
 
     /**
@@ -36,7 +38,7 @@ class AddressDeleted implements ShouldBroadcast
      */
     public function __construct(Address $address)
     {
-        $this->model = $address->withoutRelations();
+        $this->model = $address;
     }
 
     /**
@@ -48,7 +50,6 @@ class AddressDeleted implements ShouldBroadcast
     {
         return [
             new PrivateChannel('rinvex.addresses.addresses.index'),
-            new PrivateChannel("rinvex.addresses.addresses.{$this->model->getRouteKey()}"),
         ];
     }
 
@@ -59,6 +60,6 @@ class AddressDeleted implements ShouldBroadcast
      */
     public function broadcastAs()
     {
-        return 'address.deleted';
+        return 'address.created';
     }
 }
