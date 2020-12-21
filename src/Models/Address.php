@@ -6,10 +6,8 @@ namespace Rinvex\Addresses\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Rinvex\Addresses\Events\AddressSaved;
-use Jackpopp\GeoDistance\GeoDistanceTrait;
 use Rinvex\Support\Traits\ValidatingTrait;
-use Rinvex\Addresses\Events\AddressDeleted;
+use Jackpopp\GeoDistance\GeoDistanceTrait;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
@@ -121,16 +119,6 @@ class Address extends Model
     protected $observables = [
         'validating',
         'validated',
-    ];
-
-    /**
-     * The event map for the model.
-     *
-     * @var array
-     */
-    protected $dispatchesEvents = [
-        'saved' => AddressSaved::class,
-        'deleted' => AddressDeleted::class,
     ];
 
     /**
