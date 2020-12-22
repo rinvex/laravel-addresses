@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v5.0.0] - 2020-12-22
+- Upgrade to Laravel v8
+- Move custom eloquent model events to module layer from core package layer
+- Refactor and tweak Eloquent Events
+
 ## [v4.1.0] - 2020-06-15
 - Fix for Events namespace
 - Drop using rinvex/laravel-cacheable from core packages for more flexibility
@@ -120,6 +125,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2017-04-07
 - Tag first release
 
+[v5.0.0]: https://github.com/rinvex/laravel-addresses/compare/v4.1.0...v5.0.0
 [v4.1.0]: https://github.com/rinvex/laravel-addresses/compare/v4.0.6...v4.1.0
 [v4.0.5]: https://github.com/rinvex/laravel-addresses/compare/v4.0.4...v4.0.5
 [v4.0.4]: https://github.com/rinvex/laravel-addresses/compare/v4.0.3...v4.0.4
