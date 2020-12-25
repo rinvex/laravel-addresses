@@ -6,33 +6,33 @@ namespace Rinvex\Addresses\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Rinvex\Support\Traits\ValidatingTrait;
 use Jackpopp\GeoDistance\GeoDistanceTrait;
+use Rinvex\Support\Traits\ValidatingTrait;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * Rinvex\Addresses\Models\Address.
  *
- * @property int                                                $id
- * @property int                                                $addressable_id
- * @property string                                             $addressable_type
- * @property string                                             $label
- * @property string                                             $given_name
- * @property string                                             $family_name
- * @property string                                             $full_name
- * @property string                                             $organization
- * @property string                                             $country_code
- * @property string                                             $street
- * @property string                                             $state
- * @property string                                             $city
- * @property string                                             $postal_code
- * @property float                                              $latitude
- * @property float                                              $longitude
- * @property bool                                               $is_primary
- * @property bool                                               $is_billing
- * @property bool                                               $is_shipping
- * @property \Carbon\Carbon|null                                $created_at
- * @property \Carbon\Carbon|null                                $updated_at
+ * @property int                 $id
+ * @property int                 $addressable_id
+ * @property string              $addressable_type
+ * @property string              $label
+ * @property string              $given_name
+ * @property string              $family_name
+ * @property string              $full_name
+ * @property string              $organization
+ * @property string              $country_code
+ * @property string              $street
+ * @property string              $state
+ * @property string              $city
+ * @property string              $postal_code
+ * @property float               $latitude
+ * @property float               $longitude
+ * @property bool                $is_primary
+ * @property bool                $is_billing
+ * @property bool                $is_shipping
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $addressable
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address inCountry($countryCode)
