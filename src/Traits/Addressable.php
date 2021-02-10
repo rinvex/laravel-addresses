@@ -50,7 +50,7 @@ trait Addressable
      */
     public function addresses(): MorphMany
     {
-        return $this->morphMany(config('rinvex.addresses.models.address'), 'addressable');
+        return $this->morphMany(config('rinvex.addresses.models.address'), 'addressable', 'addressable_type', 'addressable_id');
     }
 
     /**
