@@ -255,13 +255,17 @@ class Address extends Model
         parent::boot();
 
         static::saving(function (self $address) {
-            if (config('rinvex.addresses.geocoding')) {
+            $geocoding = config('rinvex.addresses.geocoding.enabled');
+            $geocoding_api_key = config('rinvex.addresses.geocoding.api_key');
+            if ($geocoding && $geocoding_api_key) {
                 $segments[] = $address->street;
                 $segments[] = sprintf('%s, %s %s', $address->city, $address->state, $address->postal_code);
                 $segments[] = country($address->country_code)->getName();
 
                 $query = str_replace(' ', '+', implode(', ', $segments));
-                $geocode = json_decode(file_get_contents("https://maps.google.com/maps/api/geocode/json?address={$query}&sensor=false"));
+                $geocode = json_decode(file_get_contents(
+                    "https://maps.google.com/maps/api/geocode/json?address={$query}&sensor=false&key={$geocoding_api_key}"
+                ));
 
                 if (count($geocode->results)) {
                     $address->latitude = $geocode->results[0]->geometry->location->lat;
