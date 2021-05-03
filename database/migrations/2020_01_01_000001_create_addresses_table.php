@@ -23,6 +23,7 @@ class CreateAddressesTable extends Migration
             $table->string('state')->nullable();
             $table->string('city')->nullable();
             $table->string('postal_code')->nullable();
+            $table->string('phone')->nullable();
             $table->decimal('latitude', 10, 7)->nullable();
             $table->decimal('longitude', 10, 7)->nullable();
             $table->boolean('is_primary')->default(false);
