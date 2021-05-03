@@ -1,5 +1,5 @@
 {
-    "name": "rinvex/laravel-addresses",
+    "name": "midoelhawy/laravel-addresses",
     "description": "Rinvex Addresses is a polymorphic Laravel package, for addressbook management. You can add addresses to any eloquent model with ease.",
     "type": "library",
     "keywords": [

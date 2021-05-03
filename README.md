@@ -13,7 +13,7 @@
 
 1. Install the package via composer:
     ```shell
-    composer require rinvex/laravel-addresses
+    composer require midoelhawy/laravel-addresses
     ```
 
 2. Publish resources (migrations and config files):
@@ -49,6 +49,7 @@ $user->addresses()->create([
     'street' => '56 john doe st.',
     'state' => 'Alexandria',
     'city' => 'Alexandria',
+    'phone' => '+393287910369',
     'postal_code' => '21614',
     'latitude' => '31.2467601',
     'longitude' => '29.9020376',
