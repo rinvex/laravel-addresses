@@ -128,24 +128,7 @@ class Address extends Model
      *
      * @var array
      */
-    protected $rules = [
-        'addressable_id' => 'required|integer',
-        'addressable_type' => 'required|string|strip_tags|max:150',
-        'label' => 'nullable|string|strip_tags|max:150',
-        'given_name' => 'required|string|strip_tags|max:150',
-        'family_name' => 'nullable|string|strip_tags|max:150',
-        'organization' => 'nullable|string|strip_tags|max:150',
-        'country_code' => 'nullable|alpha|size:2|country',
-        'street' => 'nullable|string|strip_tags|max:150',
-        'state' => 'nullable|string|strip_tags|max:150',
-        'city' => 'nullable|string|strip_tags|max:150',
-        'postal_code' => 'nullable|string|strip_tags|max:150',
-        'latitude' => 'nullable|numeric',
-        'longitude' => 'nullable|numeric',
-        'is_primary' => 'sometimes|boolean',
-        'is_billing' => 'sometimes|boolean',
-        'is_shipping' => 'sometimes|boolean',
-    ];
+    protected $rules = [];
 
     /**
      * Whether the model should throw a
@@ -165,6 +148,24 @@ class Address extends Model
         parent::__construct($attributes);
 
         $this->setTable(config('rinvex.addresses.tables.addresses'));
+        $this->setRules([
+            'addressable_id' => 'required|integer',
+            'addressable_type' => 'required|string|strip_tags|max:150',
+            'label' => 'nullable|string|strip_tags|max:150',
+            'given_name' => 'required|string|strip_tags|max:150',
+            'family_name' => 'nullable|string|strip_tags|max:150',
+            'organization' => 'nullable|string|strip_tags|max:150',
+            'country_code' => 'nullable|alpha|size:2|country',
+            'street' => 'nullable|string|strip_tags|max:150',
+            'state' => 'nullable|string|strip_tags|max:150',
+            'city' => 'nullable|string|strip_tags|max:150',
+            'postal_code' => 'nullable|string|strip_tags|max:150',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
+            'is_primary' => 'sometimes|boolean',
+            'is_billing' => 'sometimes|boolean',
+            'is_shipping' => 'sometimes|boolean',
+        ]);
     }
 
     /**
