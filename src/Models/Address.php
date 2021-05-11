@@ -145,8 +145,6 @@ class Address extends Model
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
-
         $this->setTable(config('rinvex.addresses.tables.addresses'));
         $this->setRules([
             'addressable_id' => 'required|integer',
@@ -166,6 +164,8 @@ class Address extends Model
             'is_billing' => 'sometimes|boolean',
             'is_shipping' => 'sometimes|boolean',
         ]);
+
+        parent::__construct($attributes);
     }
 
     /**
