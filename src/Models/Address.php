@@ -146,7 +146,7 @@ class Address extends Model
     public function __construct(array $attributes = [])
     {
         $this->setTable(config('rinvex.addresses.tables.addresses'));
-        $this->setRules([
+        $this->mergeRules([
             'addressable_id' => 'required|integer',
             'addressable_type' => 'required|string|strip_tags|max:150',
             'label' => 'nullable|string|strip_tags|max:150',
