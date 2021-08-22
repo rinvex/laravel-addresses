@@ -35,8 +35,9 @@ class AddressesServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'rinvex.addresses');
 
         // Bind eloquent models to IoC container
-        $this->app->singleton('rinvex.addresses.address', $addressModel = $this->app['config']['rinvex.addresses.models.address']);
-        $addressModel === Address::class || $this->app->alias('rinvex.addresses.address', Address::class);
+        $this->registerModels([
+            'rinvex.addresses.address' => Address::class,
+        ]);
 
         // Register console commands
         $this->registerCommands($this->commands);
