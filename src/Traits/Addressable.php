@@ -63,16 +63,16 @@ trait Addressable
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function findByDistance($distance, $unit, $latitude, $longitude): Collection
+    public function findByDistance($distance, $unit, $latitude, $longitude): Collection
     {
-        $addressModel = config('rinvex.addresses.models.address');
-        $records = (new $addressModel())->within($distance, $unit, $latitude, $longitude)->get();
+        // @TODO: this method needs to be refactored!
+        return $this->addresses()->within($distance, $unit, $latitude, $longitude)->get();
 
         $results = [];
         foreach ($records as $record) {
             $results[] = $record->addressable;
         }
 
-        return new Collection($results);
+        return collect($results);
     }
 }
