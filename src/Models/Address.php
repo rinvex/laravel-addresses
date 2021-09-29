@@ -70,6 +70,10 @@ class Address extends Model
     use ValidatingTrait;
     use GeoDistanceTrait;
 
+    protected $latColumn = 'latitude';
+
+    protected $lngColumn = 'longitude';
+
     /**
      * {@inheritdoc}
      */
