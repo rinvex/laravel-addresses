@@ -10,6 +10,7 @@ use Jackpopp\GeoDistance\GeoDistanceTrait;
 use Rinvex\Support\Traits\ValidatingTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Rinvex\Addresses\Models\Address.
@@ -66,6 +67,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class Address extends Model
 {
+    use HasFactory;
     use SoftDeletes;
     use ValidatingTrait;
     use GeoDistanceTrait;
